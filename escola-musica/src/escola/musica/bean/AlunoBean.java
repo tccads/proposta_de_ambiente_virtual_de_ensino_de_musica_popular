@@ -1,0 +1,55 @@
+package escola.musica.bean;
+
+import java.util.List;
+
+import javax.faces.application.FacesMessage;
+import javax.faces.bean.ManagedBean;
+import javax.faces.context.FacesContext;
+
+import escola.musica.modelo.Aluno;
+
+@ManagedBean
+public class AlunoBean implements ICrud<Aluno, Long> {
+	
+	private Aluno aluno = new Aluno();
+
+	/**
+	 * @return the aluno
+	 */
+	public Aluno getAluno() {
+		return aluno;
+	}
+
+	/**
+	 * @param aluno the aluno to set
+	 */
+	public void setAluno(Aluno aluno) {
+		this.aluno = aluno;
+	}
+
+	@Override
+	public void save(Aluno aluno) {
+		FacesContext.getCurrentInstance().addMessage(null, 
+				new FacesMessage(aluno.getNome() +"removido com sucesso!"));
+	}
+
+	@Override
+	public boolean remove(Long idAluno) {
+		FacesContext.getCurrentInstance().addMessage(null, 
+				new FacesMessage("Aluno"+ idAluno +"removido com sucesso!"));
+		return false;
+	}
+
+	@Override
+	public Aluno select(Long idAluno) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<Aluno> selectAll() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	
+}
