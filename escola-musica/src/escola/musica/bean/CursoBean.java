@@ -32,8 +32,17 @@ public class CursoBean implements INavegable{
 	private List<TipoCurso> tipos = Arrays.asList(TipoCurso.values());
 	private List<Curso> cursos = new ArrayList<Curso>();
 	
-	private CursoDao cursoDao = new CursoDao();
+	private CursoDao cursoDao = null;
 	
+	
+	/**
+	 * 
+	 */
+	public CursoBean() {
+		cursoDao = new CursoDao();
+		cursos = cursoDao.selectAll();
+	}
+
 	/**
 	 * @return the cursos
 	 */
