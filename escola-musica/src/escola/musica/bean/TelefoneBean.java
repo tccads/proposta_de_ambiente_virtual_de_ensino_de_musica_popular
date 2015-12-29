@@ -6,10 +6,11 @@ import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.context.FacesContext;
 
+import escola.musica.interfaces.INavegable;
 import escola.musica.modelo.Telefone;
 
 @ManagedBean
-public class TelefoneBean implements ICrud<Telefone, String>{
+public class TelefoneBean implements INavegable{
 
 	private Telefone telefone = new Telefone();
 	
@@ -28,28 +29,37 @@ public class TelefoneBean implements ICrud<Telefone, String>{
 	}
 
 	@Override
-	public void save(Telefone telefone) {
+	public String save() {
 		FacesContext.getCurrentInstance().addMessage(null, 
-				new FacesMessage("Telefone"+ telefone.getNumero() +"salvo com sucesso!"));
+		new FacesMessage("Telefone"+ telefone.getNumero() +"salvo com sucesso!"));
+		return "lista_telefones";
 	}
 
-	@Override
-	public boolean remove(String numeroTelefone) {
-		FacesContext.getCurrentInstance().addMessage(null, 
-				new FacesMessage("Telefone removido com sucesso!"));
-		return false;
-	}
-
-	@Override
-	public Telefone select(String idEntity) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public List<Telefone> selectAll() {
-		// TODO Auto-generated method stub
-		return null;
-	}
+	
+	
+//	@Override
+//	public void save(Telefone telefone) {
+//		FacesContext.getCurrentInstance().addMessage(null, 
+//				new FacesMessage("Telefone"+ telefone.getNumero() +"salvo com sucesso!"));
+//	}
+//
+//	@Override
+//	public boolean remove(String numeroTelefone) {
+//		FacesContext.getCurrentInstance().addMessage(null, 
+//				new FacesMessage("Telefone removido com sucesso!"));
+//		return false;
+//	}
+//
+//	@Override
+//	public Telefone select(String idEntity) {
+//		// TODO Auto-generated method stub
+//		return null;
+//	}
+//
+//	@Override
+//	public List<Telefone> selectAll() {
+//		// TODO Auto-generated method stub
+//		return null;
+//	}
 
 }

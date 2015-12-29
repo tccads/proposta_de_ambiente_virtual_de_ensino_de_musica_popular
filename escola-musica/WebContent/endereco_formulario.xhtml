@@ -32,10 +32,10 @@
 			<p:inputText value="#{enderecoBean.endereco.uf}"/>	
 		</p:panelGrid>
 		
-		<p:commandButton value="Salvar" action="#{enderecoBean.save()}"
+		<p:commandButton value="Salvar" icon="ui-icon-disk" action="#{enderecoBean.save()}"
 			update="@form"/>
             
-        <p:commandButton value="Deletar" action="#{enderecoBean.remove()}"
+        <p:commandButton value="Deletar" icon="ui-icon-trash" action="#{enderecoBean.remove()}"
 			update="@form"/>
 		
 		</p:panel>

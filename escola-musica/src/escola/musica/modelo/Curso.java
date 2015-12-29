@@ -2,16 +2,22 @@ package escola.musica.modelo;
 
 import java.util.Date;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+
+@Entity
 public class Curso {
 
-	//TODO: Botar o curso, o professor, e as matérias de cada curso, depois do exemplo do video: 
+		//TODO: Botar o curso, o professor, e as matérias de cada curso, depois do exemplo do video: 
+	 	@Id
+	 	@GeneratedValue
 		private Long id;
 		private String nome;
 		private String descricao;
 		private Date dataCriacao;
 		private double duracao;
 		private TipoCurso tipo;
-		
 		
 		/**
 		 * 

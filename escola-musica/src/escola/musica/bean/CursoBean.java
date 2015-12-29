@@ -10,10 +10,13 @@ import java.util.List;
 
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.SessionScoped;
 import javax.faces.component.behavior.FacesBehavior;
 import javax.faces.context.FacesContext;
 import javax.faces.event.FacesListener;
 
+import escola.musica.dao.CursoDao;
+import escola.musica.interfaces.INavegable;
 import escola.musica.modelo.Curso;
 import escola.musica.modelo.TipoCurso;
 
@@ -21,12 +24,15 @@ import escola.musica.modelo.TipoCurso;
  * @author RSantos34
  *
  */
+@SessionScoped
 @ManagedBean
-public class CursoBean implements ICrud<Curso, Long>{
+public class CursoBean implements INavegable{
 		
 	private Curso curso = new Curso();
 	private List<TipoCurso> tipos = Arrays.asList(TipoCurso.values());
 	private List<Curso> cursos = new ArrayList<Curso>();
+	
+	private CursoDao cursoDao = new CursoDao();
 	
 	/**
 	 * @return the cursos
@@ -70,52 +76,56 @@ public class CursoBean implements ICrud<Curso, Long>{
 		this.tipos = tipos;
 	}
 
-	@Deprecated
 	@Override
-	public void save(Curso curso) {
+	public String save() {
+		
+		cursoDao.save(curso);
+		
 		cursos.add(curso);
 		curso = new Curso();
 		
 		FacesContext.getCurrentInstance().addMessage(null, 
 				new FacesMessage("Curso salvo com sucesso!"));
-		try {
-			FacesContext.getCurrentInstance().getExternalContext().dispatch("curso_lista");
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
+//		try {
+//			FacesContext.getCurrentInstance().getExternalContext().dispatch("curso_lista");
+//		} catch (IOException e) {
+//			e.printStackTrace();
+//		}
+		return "curso_lista?faces-redirect=true";
 	}
 	
-	public void save() {
-		cursos.add(curso);
-		curso = new Curso();
-		
-		FacesContext.getCurrentInstance().addMessage(null, 
-				new FacesMessage("Curso salvo com sucesso!"));
-		try {
-			FacesContext.getCurrentInstance().getExternalContext().dispatch("curso_lista");
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-	}
+//	@Deprecated
+//	@Override
+//	public void save(Curso curso) {
+//		cursos.add(curso);
+//		curso = new Curso();
+//		
+//		FacesContext.getCurrentInstance().addMessage(null, 
+//				new FacesMessage("Curso salvo com sucesso!"));
+//		try {
+//			FacesContext.getCurrentInstance().getExternalContext().dispatch("curso_lista");
+//		} catch (IOException e) {
+//			e.printStackTrace();
+//		}
+//	}
 
-
-	@Override
-	public boolean remove(Long idCurso) {
-		FacesContext.getCurrentInstance().addMessage(null, 
-		new FacesMessage("Curso "+ idCurso +"removido com sucesso!"));
-		return false;
-	}
-
-	@Override
-	public Curso select(Long idCurso) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public List<Curso> selectAll() {
-		// TODO Auto-generated method stub
-		return null;
-	}
+//	@Override
+//	public boolean remove(Long idCurso) {
+//		FacesContext.getCurrentInstance().addMessage(null, 
+//		new FacesMessage("Curso "+ idCurso +"removido com sucesso!"));
+//		return false;
+//	}
+//
+//	@Override
+//	public Curso select(Long idCurso) {
+//		// TODO Auto-generated method stub
+//		return null;
+//	}
+//
+//	@Override
+//	public List<Curso> selectAll() {
+//		// TODO Auto-generated method stub
+//		return null;
+//	}
 	
 }

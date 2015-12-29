@@ -6,10 +6,11 @@ import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.context.FacesContext;
 
+import escola.musica.interfaces.INavegable;
 import escola.musica.modelo.Professor;
 
 @ManagedBean
-public class ProfessorBean implements ICrud<Professor,String>{
+public class ProfessorBean implements INavegable{
 
 	private Professor professor = new Professor();
 	
@@ -28,29 +29,38 @@ public class ProfessorBean implements ICrud<Professor,String>{
 	}
 
 	@Override
-	public void save(Professor professor) {
+	public String save() {
+				
 		FacesContext.getCurrentInstance().addMessage(null, 
 				new FacesMessage("Professor"+ professor.getNome() +"salvo com sucesso!"));
+		return "lista_professores";
 	}
-
-	@Override
-	public boolean remove(String idProfessor) {	
-		FacesContext.getCurrentInstance().addMessage(null, 
-				new FacesMessage("Professor com id: "+ idProfessor +"removido com sucesso!"));
-		return false;
-	}
-
-	@Override
-	public Professor select(String idProfessor) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public List<Professor> selectAll() {
-		// TODO Auto-generated method stub
-		return null;
-	}
+	
+//
+//	@Override
+//	public void save(Professor professor) {
+//		FacesContext.getCurrentInstance().addMessage(null, 
+//				new FacesMessage("Professor"+ professor.getNome() +"salvo com sucesso!"));
+//	}
+//
+//	@Override
+//	public boolean remove(String idProfessor) {	
+//		FacesContext.getCurrentInstance().addMessage(null, 
+//				new FacesMessage("Professor com id: "+ idProfessor +"removido com sucesso!"));
+//		return false;
+//	}
+//
+//	@Override
+//	public Professor select(String idProfessor) {
+//		// TODO Auto-generated method stub
+//		return null;
+//	}
+//
+//	@Override
+//	public List<Professor> selectAll() {
+//		// TODO Auto-generated method stub
+//		return null;
+//	}
 
 
 

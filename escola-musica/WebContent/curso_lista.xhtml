@@ -31,25 +31,27 @@
 					<h:outputText value="#{curso.nome}"/>
 				</p:column>
 				
-<!--  Descrição é muito grande para ser exibida -->
-<!-- 				<p:column headerText="Descricao"> -->
-<!-- 					<h:outputText value="#{curso.descricao}"/> -->
-<!-- 				</p:column> -->
-				
-				<p:column headerText="Data Criação">
-					<h:outputText value="#{curso.dataCriacao}"/>
-				</p:column>
+<!--	Descrição é muito grande para ser exibida -->
+<!-- 	<p:column headerText="Descricao"> -->
+<!-- 	<h:outputText value="#{curso.descricao}"/> -->
+<!-- 	</p:column> -->
 				
 				<p:column headerText="Duracao">
 					<h:outputText value="#{curso.duracao}"/>
 				</p:column>
 				
 				<p:column headerText="Tipo">
-					<h:outputText value="#{curso.tipo}"/>
+					<h:outputText value="#{curso.tipo.label}"/>
+				</p:column>
+				
+				<p:column headerText="Data Criação">
+					<h:outputText value="#{curso.dataCriacao}">
+						<f:convertDateTime pattern="dd/MM/yyyy"/>
+					</h:outputText>
 				</p:column>
 				
 			</p:dataTable>
-		
+
 		</p:panel>
 		</h:form>
 	</h:body>

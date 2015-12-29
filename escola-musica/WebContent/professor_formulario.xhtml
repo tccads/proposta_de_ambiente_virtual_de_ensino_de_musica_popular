@@ -15,25 +15,13 @@
 		<p:growl/>
 		<p:panel header="Cadastro de cursos">
 		<p:panelGrid columns="2">
-			<h:outputLabel value="Nome: "/>
-			<p:inputText value="#{cursoBean.curso.nome}"/>
-			<h:outputLabel value="Descrição:"/>
-			<p:inputText value="#{cursoBean.curso.descricao}" cols="40" rows="3"/>
-			<h:outputLabel value="Duração: "/>
-			<p:spinner value="#{cursoBean.curso.duracao}"
-				min="1" stepFactor="0.5" size="1"/>
-			<h:outputLabel value="Tipo do curso: "/>
-			<p:selectOneMenu value="#{cursoBean.curso.tipo}">
-			 	<f:selectItem itemLabel="-- Selecione --" itemValue="null"/>
-				<f:selectItems value="#{cursoBean.tipos}" var="tipo" itemLabel="#{tipo.label}"
-				itemValue="=#{tipo}"/>
-			</p:selectOneMenu>
+			
 		</p:panelGrid>
 		
-		<p:commandButton value="Salvar" action="#{professorBean.save()}"
+		<p:commandButton value="Salvar" icon="ui-icon-disk" action="#{professorBean.save()}"
 			update="@form"/>
             
-        <p:commandButton value="Deletar" action="#{professorBean.remove()}"
+        <p:commandButton value="Deletar" icon="ui-icon-trash" action="#{professorBean.remove()}"
 			update="@form"/>
 		
 		</p:panel>
