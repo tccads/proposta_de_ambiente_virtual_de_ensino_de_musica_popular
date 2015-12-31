@@ -1,16 +1,15 @@
 package escola.musica.bean;
 
-import java.util.List;
-
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.context.FacesContext;
 
 import escola.musica.interfaces.INavegable;
 import escola.musica.modelo.Aluno;
+import escola.musica.modelo.Curso;
 
 @ManagedBean
-public class AlunoBean implements INavegable{
+public class AlunoBean implements INavegable<Curso, Long>{
 	
 	private Aluno aluno = new Aluno();
 
@@ -33,6 +32,18 @@ public class AlunoBean implements INavegable{
 		FacesContext.getCurrentInstance().addMessage(null, 
 				new FacesMessage(aluno.getNome() +"removido com sucesso!"));
 		return "aluno_lista";
+	}
+
+	@Override
+	public String edit(Curso curso) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public String remove(Long idEntity) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 		
 //	@Override

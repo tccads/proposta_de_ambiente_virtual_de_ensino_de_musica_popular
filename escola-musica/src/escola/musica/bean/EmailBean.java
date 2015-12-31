@@ -10,7 +10,7 @@ import escola.musica.interfaces.INavegable;
 import escola.musica.modelo.Email;
 
 @ManagedBean
-public class EmailBean implements INavegable{
+public class EmailBean implements INavegable<Email, String>{
 
 	private Email email = new Email();
 	
@@ -35,30 +35,16 @@ public class EmailBean implements INavegable{
 		return "lista_emails";
 	}
 
-//	@Override
-//	public void save(Email email) {
-//		FacesContext.getCurrentInstance().addMessage(null, 
-//		new FacesMessage("Email "+ email.getEndereco() +" salvo com sucesso!"));
-//		
-//	}
-//
-//	@Override
-//	public boolean remove(String idEmail) {
-//		FacesContext.getCurrentInstance().addMessage(null, 
-//		new FacesMessage(idEmail + "removido com sucesso!"));
-//		return false;
-//	}
-//
-//	@Override
-//	public Email select(String idEmail) {
-//		// TODO Auto-generated method stub
-//		return null;
-//	}
-//
-//	@Override
-//	public List<Email> selectAll() {
-//		// TODO Auto-generated method stub
-//		return null;
-//	}
+	@Override
+	public String edit(Email email) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public String remove(String idEmail) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 
 }

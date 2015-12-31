@@ -10,7 +10,7 @@ import escola.musica.interfaces.INavegable;
 import escola.musica.modelo.Professor;
 
 @ManagedBean
-public class ProfessorBean implements INavegable{
+public class ProfessorBean implements INavegable<Professor, Long>{
 
 	private Professor professor = new Professor();
 	
@@ -35,33 +35,17 @@ public class ProfessorBean implements INavegable{
 				new FacesMessage("Professor"+ professor.getNome() +"salvo com sucesso!"));
 		return "lista_professores";
 	}
-	
-//
-//	@Override
-//	public void save(Professor professor) {
-//		FacesContext.getCurrentInstance().addMessage(null, 
-//				new FacesMessage("Professor"+ professor.getNome() +"salvo com sucesso!"));
-//	}
-//
-//	@Override
-//	public boolean remove(String idProfessor) {	
-//		FacesContext.getCurrentInstance().addMessage(null, 
-//				new FacesMessage("Professor com id: "+ idProfessor +"removido com sucesso!"));
-//		return false;
-//	}
-//
-//	@Override
-//	public Professor select(String idProfessor) {
-//		// TODO Auto-generated method stub
-//		return null;
-//	}
-//
-//	@Override
-//	public List<Professor> selectAll() {
-//		// TODO Auto-generated method stub
-//		return null;
-//	}
 
+	@Override
+	public String edit(Professor entity) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 
+	@Override
+	public String remove(Long idEntity) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 
 }

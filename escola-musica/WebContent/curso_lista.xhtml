@@ -14,6 +14,9 @@
 		<h:form>
 		<p:growl/>
 		<p:panel header="Cursos cadastrados">
+		
+			 
+			<p:growl/>
 			<p:dataTable value="#{cursoBean.cursos}" var="curso">
 			
 <!-- 		private Long id; -->
@@ -49,10 +52,19 @@
 						<f:convertDateTime pattern="dd/MM/yyyy"/>
 					</h:outputText>
 				</p:column>
-				
+				<p:column>
+					<p:commandLink value="Editar" action="#{cursoBean.edit(curso)}"/>
+				</p:column>
+				<p:column>
+					<p:commandLink value="Deletar" action="#{cursoBean.remove(curso.id)}"/>
+<!-- 					 oncomplete="PF('confirmarExclusaoDialog').show()" />  -->
+				</p:column>
 			</p:dataTable>
-
+			
+			 
 		</p:panel>
+		
+		<p:button value="Novo Curso" outcome="curso_formulario" />
 		</h:form>
 	</h:body>
 </html>

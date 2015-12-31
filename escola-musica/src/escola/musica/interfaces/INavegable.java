@@ -6,17 +6,20 @@ import java.util.List;
  *  K = Tipo do id da entidade;
  * 
  */
-public interface INavegable {
+public interface INavegable<T, K> {
 	
-//		/** Salva caso já exista, ou insere a entidade passada por parâmetro.
-//		 */
-//		void save(T entity);
+		/** Método chamado na edição das entidades, retorna uma String com o nome da nova página.
+		 */
+		String edit(T entity);
 	
+		/**Método chamado em caso de persistência de entidades, ou alteração, retorna uma String como o nome da nova página.
+		 */
 		String save();
 	
-//		/** Remove a entidade cujo id foi passado por parâmetro.
-//		 */
-//		boolean remove(K idEntity);
+		/** Remove a entidade cujo id foi passado por parâmetro.
+		 */
+		String remove(K idEntity);
+		
 //		/** Retorna a entidade cujo id foi passado por parâmetro.
 //		 */
 //		T select(K idEntity);

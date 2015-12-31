@@ -12,7 +12,7 @@
 	</h:head>
 	<h:body>
 	
-        <f:loadBundle basename="resources.mensagens_erro" var="msgs"/>
+        <!--<f:loadBundle basename="resources.mensagens_erro" var="msgs_erro"/>-->
 	
 		<h:form id="form-cursos">
 		<p:growl/>
@@ -21,13 +21,13 @@
 			<h:outputLabel value="Nome: "/>
 			
 			<p:inputText id="nome" value="#{cursoBean.curso.nome}" required="true"
-				requiredMessage="Nome #{msgs.campo_obrigatorio}">
+				requiredMessage="Nome #{msgs_erro['campo_obrigatorio']}">
 				<f:validateLength minimum="3" maximum="50"/>
 			</p:inputText>
 			
 			<h:outputLabel value="Descrição:"/>
 			<p:inputText  id="descricao" value="#{cursoBean.curso.descricao}" cols="40" rows="3" required="true"
-				requiredMessage="Descrição #{msgs.campo_obrigatorio}">
+				requiredMessage="Descrição #{msgs_erro['campo_obrigatorio']}">
 				<f:validateLength minimum="3" maximum="100"/>
 			</p:inputText>
 			
@@ -38,7 +38,7 @@
 			<h:outputLabel value="Tipo do curso: "/>
 			
 			<p:selectOneMenu id="tipoCurso" value="#{cursoBean.curso.tipo}" required="true" 
-			requiredMessage="Curso #{msgs.campo_obrigatorio}">
+			requiredMessage="Tipo do curso #{msgs_erro['campo_obrigatorio']}">
 			 	<f:selectItem itemLabel="-- Selecione --" itemValue="#{null}"/>
 				<f:selectItems value="#{cursoBean.tipos}" var="tipo" itemLabel="#{tipo.label}"
 				itemValue="#{tipo}"/>
@@ -46,14 +46,14 @@
 			
 			<h:outputLabel value="Data da criação:"/>
 			<p:calendar id="dataCriacao" value="#{cursoBean.curso.dataCriacao}" pattern="dd/MM/yyyy" required="true" 
-			requiredMessage="Data de criação#{msgs.dado_obrigatorio}"/>
+			requiredMessage="Data de criação #{msgs_erro['dado_obrigatorio']}"/>
 			
 		</p:panelGrid>
 		
-		<p:commandButton value="Salvar" icon="ui-icon-disk" action="#{cursoBean.save()}" update="@form"/>
-			
-		<p:commandButton value="Deletar"  icon="ui-icon-trash" action="#{cursoBean.remove()}" update="@form"/>
-		
+		<p:commandButton value="Salvar" icon="ui-icon-disk" action="#{cursoBean.save()}" update="@form"/>			
+		<p:commandButton value="Deletar"  icon="ui-icon-trash" action="#{cursoBean.remove(curso.id)}" update="@form"/>
+		<p:button value="Listar Cursos" outcome="curso_lista" />
+
 		</p:panel>
 		</h:form>
 	</h:body>

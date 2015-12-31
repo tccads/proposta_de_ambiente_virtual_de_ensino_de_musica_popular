@@ -26,19 +26,19 @@ import escola.musica.modelo.TipoCurso;
  */
 @SessionScoped
 @ManagedBean
-public class CursoBean implements INavegable{
+public class CursoBean implements INavegable<Curso, Long>{
 		
-	private Curso curso = new Curso();
+	private Curso curso;
 	private List<TipoCurso> tipos = Arrays.asList(TipoCurso.values());
 	private List<Curso> cursos = new ArrayList<Curso>();
 	
 	private CursoDao cursoDao = null;
 	
-	
 	/**
-	 * 
+	 * Bean da entidade Curso
 	 */
 	public CursoBean() {
+		curso = new Curso();
 		cursoDao = new CursoDao();
 		cursos = cursoDao.selectAll();
 	}
@@ -102,39 +102,22 @@ public class CursoBean implements INavegable{
 //		}
 		return "curso_lista?faces-redirect=true";
 	}
-	
-//	@Deprecated
-//	@Override
-//	public void save(Curso curso) {
-//		cursos.add(curso);
-//		curso = new Curso();
-//		
-//		FacesContext.getCurrentInstance().addMessage(null, 
-//				new FacesMessage("Curso salvo com sucesso!"));
-//		try {
-//			FacesContext.getCurrentInstance().getExternalContext().dispatch("curso_lista");
-//		} catch (IOException e) {
-//			e.printStackTrace();
-//		}
-//	}
 
-//	@Override
-//	public boolean remove(Long idCurso) {
-//		FacesContext.getCurrentInstance().addMessage(null, 
-//		new FacesMessage("Curso "+ idCurso +"removido com sucesso!"));
-//		return false;
-//	}
-//
-//	@Override
-//	public Curso select(Long idCurso) {
-//		// TODO Auto-generated method stub
-//		return null;
-//	}
-//
-//	@Override
-//	public List<Curso> selectAll() {
-//		// TODO Auto-generated method stub
-//		return null;
-//	}
+	@Override
+	public String edit(Curso curso) {
+		this.curso = curso;
+		return "curso_formulario?faces-redirect=true";
+	}
+
+	@Override
+	public String remove(Long idCurso) {
+		cursoDao.remove(idCurso);
+		
+		FacesContext.getCurrentInstance().addMessage("Sucesso!", 
+new FacesMessage("Curso "+idCurso+" deletado com sucesso!"));
+		
+		cursos = cursoDao.selectAll();
+		return "curso_lista?faces-redirect=true";
+	}
 	
 }

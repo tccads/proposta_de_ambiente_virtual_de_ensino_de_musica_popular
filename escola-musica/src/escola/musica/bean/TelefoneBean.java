@@ -10,7 +10,7 @@ import escola.musica.interfaces.INavegable;
 import escola.musica.modelo.Telefone;
 
 @ManagedBean
-public class TelefoneBean implements INavegable{
+public class TelefoneBean implements INavegable<Telefone, String>{
 
 	private Telefone telefone = new Telefone();
 	
@@ -35,31 +35,16 @@ public class TelefoneBean implements INavegable{
 		return "lista_telefones";
 	}
 
-	
-	
-//	@Override
-//	public void save(Telefone telefone) {
-//		FacesContext.getCurrentInstance().addMessage(null, 
-//				new FacesMessage("Telefone"+ telefone.getNumero() +"salvo com sucesso!"));
-//	}
-//
-//	@Override
-//	public boolean remove(String numeroTelefone) {
-//		FacesContext.getCurrentInstance().addMessage(null, 
-//				new FacesMessage("Telefone removido com sucesso!"));
-//		return false;
-//	}
-//
-//	@Override
-//	public Telefone select(String idEntity) {
-//		// TODO Auto-generated method stub
-//		return null;
-//	}
-//
-//	@Override
-//	public List<Telefone> selectAll() {
-//		// TODO Auto-generated method stub
-//		return null;
-//	}
+	@Override
+	public String edit(Telefone telefone) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public String remove(String idTelefone) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 
 }
