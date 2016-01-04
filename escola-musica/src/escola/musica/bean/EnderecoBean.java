@@ -10,7 +10,7 @@ import escola.musica.interfaces.INavegable;
 import escola.musica.modelo.Endereco;
 
 @ManagedBean
-public class EnderecoBean implements INavegable<Endereco, Long>{
+public class EnderecoBean implements INavegable<Endereco>{
 
 	private Endereco endereco = new Endereco();
 	
@@ -42,9 +42,15 @@ public class EnderecoBean implements INavegable<Endereco, Long>{
 	}
 
 	@Override
-	public String remove(Long idEndereco) {
+	public String remove() {
 		// TODO Auto-generated method stub
 		return null;
+	}
+
+	@Override
+	public void holdInstance(Endereco endereco) {
+		// TODO Auto-generated method stub
+		
 	}
 
 }

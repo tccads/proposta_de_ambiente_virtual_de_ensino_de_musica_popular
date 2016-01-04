@@ -10,7 +10,7 @@ import escola.musica.interfaces.INavegable;
 import escola.musica.modelo.Telefone;
 
 @ManagedBean
-public class TelefoneBean implements INavegable<Telefone, String>{
+public class TelefoneBean implements INavegable<Telefone>{
 
 	private Telefone telefone = new Telefone();
 	
@@ -42,9 +42,15 @@ public class TelefoneBean implements INavegable<Telefone, String>{
 	}
 
 	@Override
-	public String remove(String idTelefone) {
+	public String remove() {
 		// TODO Auto-generated method stub
 		return null;
+	}
+
+	@Override
+	public void holdInstance(Telefone telefone) {
+		// TODO Auto-generated method stub
+		
 	}
 
 }

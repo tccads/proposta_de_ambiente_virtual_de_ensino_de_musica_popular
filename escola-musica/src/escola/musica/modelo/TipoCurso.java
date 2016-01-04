@@ -5,8 +5,9 @@ public enum TipoCurso {
 		TECLAS("Teclas"),
 		CORDAS("Cordas"),
 		SOPRO("Sopro"),
-		PERCUSSAO("Percussão");
-		
+		PERCUSSAO("Percussão"),
+		CANTO("Canto");
+
 		private String label;
 
 		private TipoCurso(String label) {

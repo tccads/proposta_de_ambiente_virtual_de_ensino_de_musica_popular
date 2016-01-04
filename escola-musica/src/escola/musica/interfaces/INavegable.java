@@ -6,7 +6,7 @@ import java.util.List;
  *  K = Tipo do id da entidade;
  * 
  */
-public interface INavegable<T, K> {
+public interface INavegable<T> {
 	
 		/** Método chamado na edição das entidades, retorna uma String com o nome da nova página.
 		 */
@@ -18,7 +18,7 @@ public interface INavegable<T, K> {
 	
 		/** Remove a entidade cujo id foi passado por parâmetro.
 		 */
-		String remove(K idEntity);
+		String remove();
 		
 //		/** Retorna a entidade cujo id foi passado por parâmetro.
 //		 */
@@ -26,5 +26,9 @@ public interface INavegable<T, K> {
 //		/** Traz uma coleção (List<T>) da entidade tratada pela implementação da interface.
 //		 */
 //		List<T> selectAll();
+		
+		/**Método que segura a instância de um objeto passado por parâmetro;
+		 */
+		void holdInstance(T entity);
 
 }

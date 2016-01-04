@@ -56,11 +56,16 @@
 					<p:commandLink value="Editar" action="#{cursoBean.edit(curso)}"/>
 				</p:column>
 				<p:column>
-					<p:commandLink value="Deletar" action="#{cursoBean.remove(curso.id)}"/>
-<!-- 					 oncomplete="PF('confirmarExclusaoDialog').show()" />  -->
+					<p:commandLink value="Deletar" action="#{cursoBean.holdInstance(curso)}"
+					 oncomplete="PF('confirmarExclusaoDialog').show();" update="@form"/> 
 				</p:column>
 			</p:dataTable>
 			
+			<p:confirmDialog message="#{msgs_erro['confirma_exclusao']} curso de id #{cursoBean.curso.id} ?" 
+			widgetVar="confirmarExclusaoDialog">
+				<p:commandButton value="Sim" action="#{cursoBean.remove()}" oncomplete="PF('confirmarExclusaoDialog').hide();" update="@form"/>
+				<p:commandButton value="Não" oncomplete="PF('confirmarExclusaoDialog').hide();" update="@form"/>
+			</p:confirmDialog>
 			 
 		</p:panel>
 		

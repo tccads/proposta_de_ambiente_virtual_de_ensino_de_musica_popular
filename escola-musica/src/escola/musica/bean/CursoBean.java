@@ -15,6 +15,8 @@ import javax.faces.component.behavior.FacesBehavior;
 import javax.faces.context.FacesContext;
 import javax.faces.event.FacesListener;
 
+import org.primefaces.push.annotation.Singleton;
+
 import escola.musica.dao.CursoDao;
 import escola.musica.interfaces.INavegable;
 import escola.musica.modelo.Curso;
@@ -26,11 +28,12 @@ import escola.musica.modelo.TipoCurso;
  */
 @SessionScoped
 @ManagedBean
-public class CursoBean implements INavegable<Curso, Long>{
+public class CursoBean implements INavegable<Curso>{
 		
-	private Curso curso;
+	private static Curso curso;
 	private List<TipoCurso> tipos = Arrays.asList(TipoCurso.values());
 	private List<Curso> cursos = new ArrayList<Curso>();
+
 	
 	private CursoDao cursoDao = null;
 	
@@ -38,7 +41,11 @@ public class CursoBean implements INavegable<Curso, Long>{
 	 * Bean da entidade Curso
 	 */
 	public CursoBean() {
-		curso = new Curso();
+		
+		if(curso == null){
+			curso = new Curso();
+		}
+		
 		cursoDao = new CursoDao();
 		cursos = cursoDao.selectAll();
 	}
@@ -110,14 +117,22 @@ public class CursoBean implements INavegable<Curso, Long>{
 	}
 
 	@Override
-	public String remove(Long idCurso) {
-		cursoDao.remove(idCurso);
+	public String remove() {
+		
+		System.out.println("\n\rId do curso a ser deletado: "+curso.getId());
+		cursoDao.remove(curso.getId());
 		
 		FacesContext.getCurrentInstance().addMessage("Sucesso!", 
-new FacesMessage("Curso "+idCurso+" deletado com sucesso!"));
+new FacesMessage("Curso "+curso.getId()+" deletado com sucesso!"));
 		
 		cursos = cursoDao.selectAll();
 		return "curso_lista?faces-redirect=true";
+	}
+
+	@Override
+	public void holdInstance(Curso curso) {
+		System.out.println("\n\rEntrou no método hold instance: " + curso.getId());
+		this.curso = curso;
 	}
 	
 }

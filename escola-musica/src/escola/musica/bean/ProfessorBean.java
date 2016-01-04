@@ -10,7 +10,7 @@ import escola.musica.interfaces.INavegable;
 import escola.musica.modelo.Professor;
 
 @ManagedBean
-public class ProfessorBean implements INavegable<Professor, Long>{
+public class ProfessorBean implements INavegable<Professor>{
 
 	private Professor professor = new Professor();
 	
@@ -37,15 +37,21 @@ public class ProfessorBean implements INavegable<Professor, Long>{
 	}
 
 	@Override
-	public String edit(Professor entity) {
+	public String edit(Professor professor) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public String remove(Long idEntity) {
+	public String remove() {
 		// TODO Auto-generated method stub
 		return null;
+	}
+
+	@Override
+	public void holdInstance(Professor professor) {
+		// TODO Auto-generated method stub
+		
 	}
 
 }

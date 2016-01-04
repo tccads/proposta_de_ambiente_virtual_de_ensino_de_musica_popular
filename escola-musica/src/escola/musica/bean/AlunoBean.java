@@ -9,41 +9,32 @@ import escola.musica.modelo.Aluno;
 import escola.musica.modelo.Curso;
 
 @ManagedBean
-public class AlunoBean implements INavegable<Curso, Long>{
+public class AlunoBean implements INavegable<Aluno>{
 	
 	private Aluno aluno = new Aluno();
 
-	/**
-	 * @return the aluno
-	 */
-	public Aluno getAluno() {
-		return aluno;
-	}
-
-	/**
-	 * @param aluno the aluno to set
-	 */
-	public void setAluno(Aluno aluno) {
-		this.aluno = aluno;
+	@Override
+	public String edit(Aluno aluno) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 	@Override
 	public String save() {
-		FacesContext.getCurrentInstance().addMessage(null, 
-				new FacesMessage(aluno.getNome() +"removido com sucesso!"));
-		return "aluno_lista";
-	}
-
-	@Override
-	public String edit(Curso curso) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public String remove(Long idEntity) {
+	public String remove() {
 		// TODO Auto-generated method stub
 		return null;
+	}
+
+	@Override
+	public void holdInstance(Aluno aluno) {
+		// TODO Auto-generated method stub
+		
 	}
 		
 //	@Override

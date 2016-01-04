@@ -10,7 +10,7 @@ import escola.musica.interfaces.INavegable;
 import escola.musica.modelo.Email;
 
 @ManagedBean
-public class EmailBean implements INavegable<Email, String>{
+public class EmailBean implements INavegable<Email>{
 
 	private Email email = new Email();
 	
@@ -42,9 +42,15 @@ public class EmailBean implements INavegable<Email, String>{
 	}
 
 	@Override
-	public String remove(String idEmail) {
+	public String remove() {
 		// TODO Auto-generated method stub
 		return null;
+	}
+
+	@Override
+	public void holdInstance(Email email) {
+		// TODO Auto-generated method stub
+		
 	}
 
 }
