@@ -52,7 +52,7 @@ public class CursoDao implements IDao<Curso, Long> {
 			}
 		} catch (TransactionException e) {
 			if (transac != null && transac.isActive()) {
-				System.out.print("A transação"+ transac.toString() +"está aberta!");
+				System.out.print("A transaï¿½ï¿½o"+ transac.toString() +"estï¿½ aberta!");
 				transac.rollback();
 			}
 			e.printStackTrace();
@@ -71,6 +71,32 @@ public class CursoDao implements IDao<Curso, Long> {
 	@Override
 	public List<Curso> selectAll() {
 		Query query = entityManager.createQuery("from Curso");
+		return query.getResultList();
+	}
+
+	public List<Curso> selectAllAccordion(List<String> filtros) {
+		
+		StringBuilder restricoes = new StringBuilder("from Curso where nome in (");
+		int counter = filtros.size();
+		
+		System.out.print("\n\rFiltros: "+filtros);
+		
+		for (int i = 0; i < filtros.size(); i++) {
+			counter--;
+			System.out.print("\n\rContador: "+counter);
+			
+			restricoes.append("'"+filtros.get(i)+"'");
+			
+			if(counter > 0){
+				restricoes.append(",");
+			}		
+		}
+		
+		restricoes.append(") order by nome");
+		
+		System.out.print("\n\r RestriÃ§Ãµes do mÃ©todo selectAccordion: " + restricoes);
+		Query query = entityManager.createQuery(restricoes.toString());
+		//Query query = entityManager.createQuery("from Curso where nome in ('Violino','Viola','Bateria','Clarinete','Flauta','Guitarra','ViolÃ£o,','OboÃ©') order by nome");
 		return query.getResultList();
 	}
 

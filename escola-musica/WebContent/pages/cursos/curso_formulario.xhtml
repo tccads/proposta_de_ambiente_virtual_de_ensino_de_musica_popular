@@ -45,7 +45,7 @@
 			</p:selectOneMenu>
 			
 			<h:outputLabel value="Data da criação:"/>
-			<p:calendar id="dataCriacao" value="#{cursoBean.curso.dataCriacao}" pattern="dd/MM/yyyy" required="true" 
+			<p:calendar id="dataCriacao" value="#{cursoBean.curso.dataCriacao}" pattern="dd/MM/yyyy" maxdate="#{cursoBean.dataAtual}" required="true" 
 			requiredMessage="Data de criação #{msgs_erro['dado_obrigatorio']}"/>
 			
 		</p:panelGrid>
