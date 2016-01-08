@@ -16,7 +16,7 @@ import org.hibernate.validator.constraints.NotEmpty;
 @Entity
 public class Curso {
 
-		//TODO: Botar o curso, o professor, e as mat�rias de cada curso, depois do exemplo do video: 
+		//TODO: Botar o curso, o professor, e as matérias de cada curso, depois do exemplo do video: 
 		private Long id;
 		private String nome;
 		private String descricao;
@@ -79,7 +79,7 @@ public class Curso {
 		}
 		
 		@NotEmpty(message="Você deve informar uma descrição.")
-		@Length(min=4, max=255, message="A descrição deve ter até 999 caracteres!")
+		@Length(min=4, max=255, message="A descrição deve ter até 255 caracteres!")
 		/**
 		 * @return the descricao
 		 */
@@ -93,7 +93,7 @@ public class Curso {
 			this.descricao = descricao;
 		}
 		
-		@NotNull(message = "Voc� deve selecionar o tipo do curso!")
+		@NotNull(message = "Você deve selecionar o tipo do curso!")
 		/**
 		 * @return the duracao
 		 */

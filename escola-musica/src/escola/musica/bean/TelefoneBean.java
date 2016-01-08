@@ -29,27 +29,24 @@ public class TelefoneBean implements INavegable<Telefone>{
 	}
 
 	@Override
-	public String save() {
+	public void save() {
 		FacesContext.getCurrentInstance().addMessage(null, 
 		new FacesMessage("Telefone"+ telefone.getNumero() +"salvo com sucesso!"));
-		return "lista_telefones";
 	}
 
 	@Override
-	public String edit(Telefone telefone) {
-		// TODO Auto-generated method stub
-		return null;
+	public void edit(Telefone telefone) {
+		// TODO Implementar o edit
 	}
 
 	@Override
-	public String remove() {
-		// TODO Auto-generated method stub
-		return null;
+	public void remove() {
+		// TODO Implementar o remove
 	}
 
 	@Override
 	public void holdInstance(Telefone telefone) {
-		// TODO Auto-generated method stub
+		// TODO Implementar o holdInstance
 		
 	}
 

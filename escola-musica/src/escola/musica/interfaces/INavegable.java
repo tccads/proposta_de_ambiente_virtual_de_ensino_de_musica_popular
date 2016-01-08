@@ -2,32 +2,32 @@ package escola.musica.interfaces;
 
 import java.util.List;
 
-/** T = Entidade tratada na implementação;
+/** T = Entidade tratada na implementaï¿½ï¿½o;
  *  K = Tipo do id da entidade;
  * 
  */
 public interface INavegable<T> {
 	
-		/** Método chamado na edição das entidades, retorna uma String com o nome da nova página.
+		/** Mï¿½todo chamado na ediï¿½ï¿½o das entidades, retorna uma String com o nome da nova pï¿½gina.
 		 */
-		String edit(T entity);
+		void edit(T entity);
 	
-		/**Método chamado em caso de persistência de entidades, ou alteração, retorna uma String como o nome da nova página.
+		/**Mï¿½todo chamado em caso de persistï¿½ncia de entidades, ou alteraï¿½ï¿½o, retorna uma String como o nome da nova pï¿½gina.
 		 */
-		String save();
+		void save();
 	
-		/** Remove a entidade cujo id foi passado por parâmetro.
+		/** Remove a entidade cujo id foi passado por parï¿½metro.
 		 */
-		String remove();
+		void remove();
 		
-//		/** Retorna a entidade cujo id foi passado por parâmetro.
+//		/** Retorna a entidade cujo id foi passado por parï¿½metro.
 //		 */
 //		T select(K idEntity);
-//		/** Traz uma coleção (List<T>) da entidade tratada pela implementação da interface.
+//		/** Traz uma coleï¿½ï¿½o (List<T>) da entidade tratada pela implementaï¿½ï¿½o da interface.
 //		 */
 //		List<T> selectAll();
 		
-		/**Método que segura a instância de um objeto passado por parâmetro;
+		/**Mï¿½todo que segura a instï¿½ncia de um objeto passado por parï¿½metro;
 		 */
 		void holdInstance(T entity);
 

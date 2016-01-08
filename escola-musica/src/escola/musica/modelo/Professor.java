@@ -9,6 +9,7 @@ public class Professor extends Pessoa{
 	private List<Aluno> alunos;
 	private List<Instrumento> instrumentos;
 	private List<IntervaloTempo> horariosDisponiveis;
+	private boolean ativo;
 	
 	/**
 	 * @param cursosMinistrados

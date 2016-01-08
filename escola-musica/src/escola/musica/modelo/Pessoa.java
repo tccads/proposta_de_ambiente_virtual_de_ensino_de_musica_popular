@@ -4,6 +4,7 @@ import java.util.List;
 
 public abstract class Pessoa {
 	
+	private Integer id;
 	private String cpf;
 	private String nome;
 	private String sobrenome;
@@ -11,6 +12,18 @@ public abstract class Pessoa {
 	private List<Email> emails;
 	private Endereco endereco;
 	
+	/**
+	 * @return the id
+	 */
+	public Integer getId() {
+		return id;
+	}
+	/**
+	 * @param id the id to set
+	 */
+	public void setId(Integer id) {
+		this.id = id;
+	}
 	/**
 	 * @return the cpf
 	 */

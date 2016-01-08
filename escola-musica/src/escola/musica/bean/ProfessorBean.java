@@ -29,28 +29,25 @@ public class ProfessorBean implements INavegable<Professor>{
 	}
 
 	@Override
-	public String save() {
+	public void save() {
 				
 		FacesContext.getCurrentInstance().addMessage(null, 
 				new FacesMessage("Professor"+ professor.getNome() +"salvo com sucesso!"));
-		return "lista_professores";
 	}
 
 	@Override
-	public String edit(Professor professor) {
-		// TODO Auto-generated method stub
-		return null;
+	public void edit(Professor professor) {
+		// TODO Implementar o edit
 	}
 
 	@Override
-	public String remove() {
-		// TODO Auto-generated method stub
-		return null;
+	public void remove() {
+		// TODO Implementar o remove
 	}
 
 	@Override
 	public void holdInstance(Professor professor) {
-		// TODO Auto-generated method stub
+		// TODO Implementar o holdInstance
 		
 	}
 

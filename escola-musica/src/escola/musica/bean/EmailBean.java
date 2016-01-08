@@ -29,27 +29,24 @@ public class EmailBean implements INavegable<Email>{
 	}
 
 	@Override
-	public String save() {
+	public void save() {
 		FacesContext.getCurrentInstance().addMessage(null, 
 				new FacesMessage("Email "+ email.getEndereco() +" salvo com sucesso!"));
-		return "lista_emails";
 	}
 
 	@Override
-	public String edit(Email email) {
-		// TODO Auto-generated method stub
-		return null;
+	public void edit(Email email) {
+		// TODO Implementar o edit
 	}
 
 	@Override
-	public String remove() {
-		// TODO Auto-generated method stub
-		return null;
+	public void remove() {
+		// TODO Implementar o remove
 	}
 
 	@Override
 	public void holdInstance(Email email) {
-		// TODO Auto-generated method stub
+		// TODO Implementar o holdInstance
 		
 	}
 

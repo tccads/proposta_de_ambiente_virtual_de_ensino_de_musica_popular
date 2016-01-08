@@ -9,30 +9,21 @@
 	<title>Escola Música - <ui:insert name="titulo"/> </title>
 	<meta charset="utf-8" />
 	<ui:insert name="header"/>
-	<!-- <link rel="stylesheet" type="text/css" href="#{request.contextPath}/resources/vendor/css/bootstrap.css" />
+	
+	<link rel="stylesheet" type="text/css" href="#{request.contextPath}/resources/vendor/css/bootstrap.css" />
 	<link rel="stylesheet" type="text/css" href="#{request.contextPath}/resources/vendor/css/bootstrap-responsive.css" />
-	<link rel="stylesheet" type="text/css" href="#{request.contextPath}/resources/vendor/css/font-awesome.css" /> -->
-	<link rel="stylesheet" href="#{request.contextPath}/css/tema.css" />
+	<link rel="stylesheet" type="text/css" href="#{request.contextPath}/resources/vendor/css/font-awesome.css" />
+	
+	<link rel="stylesheet" href="#{request.contextPath}/css/tema.css"/>
 </h:head>
 <h:body>
 	<h:form>
-		<p:menubar>
-			<p:menuitem value="Curso" url="/curso/manutencao/" 
-				icon="fa fa-book"/>
-			<p:menuitem value="Alunos" url="/aluno/manutencao/" icon="fa fa-user"/>
-			<p:menuitem value="Matrículas" url="/matricula/manutencao/" icon="fa fa-list"/>
-			<p:menuitem value="Cidades" url="/cidade/manutencao/" icon="fa fa-building"/>
-			<p:submenu label="Turmas">
-				<p:menuitem value="Turmas" url="/turma/manutencao/"/>
-				<p:menuitem value="Turma Drag Drop" url="/turma/dragdrop/" icon="fa fa-users"/>
-			</p:submenu>
-			<p:submenu label="Usuários">
-				<p:menuitem value="Professor" url="/usuarioprofessor/manutencao/" icon="fa fa-graduation-cap"/>
-			</p:submenu>
-			<p:submenu label="Exemplos">
-				<p:menuitem value="Cursos TabView" url="/curso/tabview/"/>
-			</p:submenu>
-			<p:menuitem value="Sair" action="#{authenticationContext.logout}" icon="fa fa-arrow-circle-right"/>
+		<p:menubar style="height:80px">
+			<p:menuitem value="Curso" url="/curso/manutencao/" icon="cursos-icon"/>
+			<p:menuitem value="Matrícula" url="" icon="matricula-icon"/>
+			<p:menuitem value="Professor" url="" icon="professor-icon"/>
+			<p:menuitem value="Aluno" url="" icon="aluno-icon"/>
+			<p:menuitem value="Instrumento" url="" icon="instrumento-icon"/>
 		</p:menubar>
 	</h:form>
 	<ui:insert name="principal" />

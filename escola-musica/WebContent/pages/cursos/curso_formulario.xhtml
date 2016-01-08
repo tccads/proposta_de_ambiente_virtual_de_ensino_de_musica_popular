@@ -7,54 +7,51 @@
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:p="http://primefaces.org/ui">
 
-	<h:head>
-		<title>Cadastro de Cursos</title>
-	</h:head>
-	<h:body>
-	
-        <!--<f:loadBundle basename="resources.mensagens_erro" var="msgs_erro"/>-->
-	
-		<h:form id="form-cursos">
-		<p:growl/>
-		<p:panel header="Cadastro de cursos" style="width 60%">
-		<p:panelGrid columns="2" style="width 90%">
-			<h:outputLabel value="Nome: "/>
-			
-			<p:inputText id="nome" value="#{cursoBean.curso.nome}" required="true"
-				requiredMessage="Nome #{msgs_erro['campo_obrigatorio']}">
-				<f:validateLength minimum="3" maximum="50"/>
-			</p:inputText>
-			
-			<h:outputLabel value="Descrição:"/>
-			<p:inputText  id="descricao" value="#{cursoBean.curso.descricao}" cols="40" rows="3" required="true"
-				requiredMessage="Descrição #{msgs_erro['campo_obrigatorio']}">
-				<f:validateLength minimum="3" maximum="100"/>
-			</p:inputText>
-			
-			<h:outputLabel value="Duração: "/>
-			<p:spinner id="duracao" value="#{cursoBean.curso.duracao}"
-				min="1" stepFactor="0.5" size="1"/>
-				
-			<h:outputLabel value="Tipo do curso: "/>
-			
-			<p:selectOneMenu id="tipoCurso" value="#{cursoBean.curso.tipo}" required="true" 
-			requiredMessage="Tipo do curso #{msgs_erro['campo_obrigatorio']}">
-			 	<f:selectItem itemLabel="-- Selecione --" itemValue="#{null}"/>
-				<f:selectItems value="#{cursoBean.tipos}" var="tipo" itemLabel="#{tipo.label}"
-				itemValue="#{tipo}"/>
-			</p:selectOneMenu>
-			
-			<h:outputLabel value="Data da criação:"/>
-			<p:calendar id="dataCriacao" value="#{cursoBean.curso.dataCriacao}" pattern="dd/MM/yyyy" maxdate="#{cursoBean.dataAtual}" required="true" 
-			requiredMessage="Data de criação #{msgs_erro['dado_obrigatorio']}"/>
-			
-		</p:panelGrid>
-		
-		<p:commandButton value="Salvar" icon="ui-icon-disk" action="#{cursoBean.save()}" update="@form"/>			
-		<p:commandButton value="Deletar"  icon="ui-icon-trash" action="#{cursoBean.remove(curso.id)}" update="@form"/>
-		<p:button value="Listar Cursos" outcome="curso_lista" />
+<!--<f:loadBundle basename="resources.mensagens_erro" var="msgs_erro"/>-->
+<p:panel header="Cadastro de cursos" style="width 60%"
+	rendered="#{cursoBean.curso != null}" id="lista-curso-panel">
+	<p:panelGrid columns="2" style="width:95%;">
+		<h:outputLabel value="Nome: " />
 
-		</p:panel>
-		</h:form>
-	</h:body>
+		<p:inputText id="nome" value="#{cursoBean.curso.nome}" required="true"
+			requiredMessage="Nome #{msgs_erro['campo_obrigatorio']}">
+			<f:validateLength minimum="3" maximum="50" />
+		</p:inputText>
+
+		<h:outputLabel value="Descrição:" />
+		<p:inputText id="descricao" value="#{cursoBean.curso.descricao}"
+			cols="40" rows="3" required="true"
+			requiredMessage="Descrição #{msgs_erro['campo_obrigatorio']}">
+			<f:validateLength minimum="3" maximum="100" />
+		</p:inputText>
+
+		<h:outputLabel value="Duração: " />
+		<p:spinner id="duracao" value="#{cursoBean.curso.duracao}" min="1"
+			stepFactor="0.5" size="1" />
+
+		<h:outputLabel value="Tipo do curso: " />
+
+		<p:selectOneMenu id="tipoCurso" value="#{cursoBean.curso.tipo}"
+			required="true"
+			requiredMessage="Tipo do curso #{msgs_erro['campo_obrigatorio']}">
+			<f:selectItem itemLabel="-- Selecione --" itemValue="#{null}" />
+			<f:selectItems value="#{cursoBean.tipos}" var="tipo"
+				itemLabel="#{tipo.label}" itemValue="#{tipo}" />
+		</p:selectOneMenu>
+
+		<h:outputLabel value="Data da criação:" />
+		<p:calendar id="dataCriacao" value="#{cursoBean.curso.dataCriacao}"
+			pattern="dd/MM/yyyy" maxdate="#{cursoBean.dataAtual}" required="true"
+			requiredMessage="Data de criação #{msgs_erro['dado_obrigatorio']}" />
+
+	</p:panelGrid>
+
+	<p:commandButton id="btn-salvar" value="Salvar" icon="ui-icon-disk"
+		action="#{cursoBean.save()}" update="@form" />
+	<p:commandButton icon="voltar-icon" value="Listar Cursos" action="#{cursoBean.voltar()}"
+		immediate="true" update="@form" />
+
+</p:panel>
+	<p:blockUI block="lista-curso-panel" trigger="btn-salvar"/>
+
 </html>

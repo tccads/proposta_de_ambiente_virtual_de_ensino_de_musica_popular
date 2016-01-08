@@ -14,26 +14,23 @@ public class AlunoBean implements INavegable<Aluno>{
 	private Aluno aluno = new Aluno();
 
 	@Override
-	public String edit(Aluno aluno) {
-		// TODO Auto-generated method stub
-		return null;
+	public void edit(Aluno aluno) {
+		// TODO Implementar o edit.
 	}
 
 	@Override
-	public String save() {
-		// TODO Auto-generated method stub
-		return null;
+	public void save() {
+		// TODO Implementar o save
 	}
 
 	@Override
-	public String remove() {
-		// TODO Auto-generated method stub
-		return null;
+	public void remove() {
+		// TODO Implementar o remove
 	}
 
 	@Override
 	public void holdInstance(Aluno aluno) {
-		// TODO Auto-generated method stub
+		// TODO implementar o holdInstance
 		
 	}
 		

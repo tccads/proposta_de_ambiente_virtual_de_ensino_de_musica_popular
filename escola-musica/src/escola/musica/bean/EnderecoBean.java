@@ -29,28 +29,24 @@ public class EnderecoBean implements INavegable<Endereco>{
 	}
 
 	@Override
-	public String save() {
+	public void save() {
 		FacesContext.getCurrentInstance().addMessage(null, 
-				new FacesMessage("Endereço salvo com sucesso!"));
-		return "lista_endereco";
+				new FacesMessage("Endereï¿½o salvo com sucesso!"));
 	}
 
 	@Override
-	public String edit(Endereco endereco) {
-		// TODO Auto-generated method stub
-		return null;
+	public void edit(Endereco endereco) {
+		// TODO Implementar o edit
 	}
 
 	@Override
-	public String remove() {
-		// TODO Auto-generated method stub
-		return null;
+	public void remove() {
+		// TODO Implementar o remove
 	}
 
 	@Override
 	public void holdInstance(Endereco endereco) {
-		// TODO Auto-generated method stub
-		
+		// TODO Implementar o holdInstace
 	}
 
 }

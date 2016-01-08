@@ -33,10 +33,11 @@ import escola.musica.modelo.TipoCurso;
 public class CursoBean implements INavegable<Curso> {
 
 	private static Curso curso;
-	private List<TipoCurso> tipos = Arrays.asList(TipoCurso.values());
+	private List<TipoCurso> tipos;
 	private List<Curso> cursos = new ArrayList<Curso>();
 	private List<Curso> cursosAccordion = new ArrayList<Curso>();
 	private List<String> restricoes = new ArrayList<String>();
+	private Curso cursoAlvo;
 
 	private CursoDao cursoDao = null;
 
@@ -50,9 +51,9 @@ public class CursoBean implements INavegable<Curso> {
 	}
 
 	public void iniciarBean() {
-		if (curso == null) {
-			curso = new Curso();
-		}
+//		if (curso == null) {
+//			curso = new Curso();
+//		}
 
 		cursoDao = new CursoDao();
 		cursos = cursoDao.selectAll();
@@ -64,6 +65,25 @@ public class CursoBean implements INavegable<Curso> {
 		// dao = new GenericDAO<Curso, Long>();
 
 		cursosAccordion = cursoDao.selectAllAccordion(restricoes);
+		tipos = Arrays.asList(TipoCurso.values());
+	}
+	
+	/**
+	 * @return the cursoAlvo
+	 */
+	public Curso getCursoAlvo() {
+		return cursoAlvo;
+	}
+
+	/**
+	 * @param cursoAlvo the cursoAlvo to set
+	 */
+	public void setCursoAlvo(Curso cursoAlvo) {
+		this.cursoAlvo = cursoAlvo;
+	}
+
+	public void novoCurso(){
+		curso = new Curso();
 	}
 	
 	/**
@@ -112,12 +132,12 @@ public class CursoBean implements INavegable<Curso> {
 	}
 
 	@Override
-	public String save() {
+	public void save() {
 
 		cursoDao.save(curso);
 
 		cursos.add(curso);
-		curso = new Curso();
+		curso = null;
 
 		FacesContext.getCurrentInstance().addMessage(null,
 				new FacesMessage("Curso salvo com sucesso!"));
@@ -126,35 +146,35 @@ public class CursoBean implements INavegable<Curso> {
 		// } catch (IOException e) {
 		// e.printStackTrace();
 		// }
-		return "curso_lista?faces-redirect=true";
+		//return "curso_lista?faces-redirect=true";
 	}
 
 	@Override
-	public String edit(Curso curso) {
+	public void edit(Curso curso) {
 		this.curso = curso;
-		return "curso_formulario?faces-redirect=true";
+		//return "curso_formulario?faces-redirect=true";
 	}
 
 	@Override
-	public String remove() {
+	public void remove() {
 
-		System.out.println("\n\rId do curso a ser deletado: " + curso.getId());
-		cursoDao.remove(curso.getId());
+		System.out.println("\n\rId do curso a ser deletado: " + cursoAlvo.getId());
+		cursoDao.remove(cursoAlvo.getId());
 
 		FacesContext.getCurrentInstance().addMessage(
 				"Sucesso!",
-				new FacesMessage("Curso " + curso.getId()
+				new FacesMessage("Curso " + cursoAlvo.getId()
 						+ " deletado com sucesso!"));
 
 		cursos = cursoDao.selectAll();
-		return "curso_lista?faces-redirect=true";
+		//return "curso_lista?faces-redirect=true";
 	}
 
 	@Override
 	public void holdInstance(Curso curso) {
-		System.out.println("\n\rEntrou no m�todo hold instance: "
+		System.out.println("\n\rEntrou no método hold instance: "
 				+ curso.getId());
-		this.curso = curso;
+		this.cursoAlvo = curso;
 	}
 
 	public Date getDataAtual() {
@@ -174,6 +194,10 @@ public class CursoBean implements INavegable<Curso> {
 	 */
 	public void setCursosAccordion(List<Curso> cursosAccordion) {
 		this.cursosAccordion = cursosAccordion;
+	}
+	
+	public void voltar(){
+		curso = null;
 	}
 
 }
