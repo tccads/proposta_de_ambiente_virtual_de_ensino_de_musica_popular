@@ -29,14 +29,14 @@
 		<p:spinner id="duracao" value="#{cursoBean.curso.duracao}" min="1"
 			stepFactor="0.5" size="1" />
 
-		<h:outputLabel value="Tipo do curso: " />
+		<h:outputLabel value="Área do curso: " />
 
-		<p:selectOneMenu id="tipoCurso" value="#{cursoBean.curso.tipo}"
+		<p:selectOneMenu id="areaCurso" value="#{cursoBean.curso.area}"
 			required="true"
-			requiredMessage="Tipo do curso #{msgs_erro['campo_obrigatorio']}">
+			requiredMessage="Área do curso #{msgs_erro['campo_obrigatorio']}">
 			<f:selectItem itemLabel="-- Selecione --" itemValue="#{null}" />
-			<f:selectItems value="#{cursoBean.tipos}" var="tipo"
-				itemLabel="#{tipo.label}" itemValue="#{tipo}" />
+			<f:selectItems value="#{cursoBean.areas}" var="area"
+				itemLabel="#{area.label}" itemValue="#{area}" />
 		</p:selectOneMenu>
 
 		<h:outputLabel value="Data da criação:" />

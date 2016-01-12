@@ -56,13 +56,17 @@ public class GenericDAO<T, TipoId> {
 	
 	/**
 	 * Tem que ser testado
+	 * Método que traz um objeto único de acordo com a sua identificação,
+	 * seja qual for a coluna sendo o Id, de acordo com o tipo e o idenfificador em si
+	 * passado por parâmetro.
+	 * 
 	 */
-	public T obterPorId(TipoId tipoId, String nomeId){
+	public T obterPorId(TipoId id, String nomeId){
 		
 		EntityManager entityManager = JPAUtil.getEntityManager();
 		
 		T entity = entityManager.createQuery("from " + classe.getName() + " where "+ nomeId +" = :cod", classe)
-				.setParameter("cod", tipoId).getSingleResult();
+				.setParameter("cod", id).getSingleResult();
 		
 		entityManager.close();
 		

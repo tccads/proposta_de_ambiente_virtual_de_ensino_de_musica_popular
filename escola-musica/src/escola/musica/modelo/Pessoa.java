@@ -1,32 +1,68 @@
 package escola.musica.modelo;
 
+import java.io.Serializable;
 import java.util.List;
 
-public abstract class Pessoa {
-	
-	private Integer id;
+import javax.persistence.Embedded;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
+import javax.validation.constraints.NotNull;
+
+import org.hibernate.validator.constraints.Length;
+import org.hibernate.validator.constraints.NotEmpty;
+import org.hibernate.validator.constraints.br.CPF;
+
+@Entity
+@Inheritance(strategy = InheritanceType.JOINED)
+public abstract class Pessoa implements Serializable{
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 4163624590974880134L;
+	@Id
+ 	@GeneratedValue(strategy = GenerationType.AUTO)
+	private Integer pessoa_id;
+	@CPF
+	@NotNull
 	private String cpf;
+	@NotEmpty(message="O campo nome deve ser informado!")
+	@Length(min=2, max=255, message="O campo nome deve ter entre 2 e 100 caracteres!")
 	private String nome;
+	@NotEmpty(message="O campo nome deve ser informado!")
+	@Length(min=4, max=255, message="O campo nome deve ter entre 2 e 255 caracteres!")
 	private String sobrenome;
+	@OneToMany(mappedBy="pessoa")
 	private List<Telefone> telefones;
+	@OneToMany(mappedBy="pessoa")
 	private List<Email> emails;
+	@Embedded
 	private Endereco endereco;
+	
 	
 	/**
 	 * @return the id
 	 */
 	public Integer getId() {
-		return id;
+		return pessoa_id;
 	}
 	/**
 	 * @param id the id to set
 	 */
 	public void setId(Integer id) {
-		this.id = id;
+		this.pessoa_id = id;
 	}
 	/**
 	 * @return the cpf
 	 */
+
 	public String getCpf() {
 		return cpf;
 	}
@@ -36,6 +72,7 @@ public abstract class Pessoa {
 	public void setCpf(String cpf) {
 		this.cpf = cpf;
 	}
+	
 	/**
 	 * @return the nome
 	 */
@@ -48,9 +85,11 @@ public abstract class Pessoa {
 	public void setNome(String nome) {
 		this.nome = nome;
 	}
+	
 	/**
 	 * @return the sobrenome
 	 */
+
 	public String getSobrenome() {
 		return sobrenome;
 	}

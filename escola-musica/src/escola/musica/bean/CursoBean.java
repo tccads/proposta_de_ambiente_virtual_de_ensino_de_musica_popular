@@ -22,7 +22,7 @@ import escola.musica.dao.CursoDao;
 import escola.musica.dao.GenericDAO;
 import escola.musica.interfaces.INavegable;
 import escola.musica.modelo.Curso;
-import escola.musica.modelo.TipoCurso;
+import escola.musica.modelo.Area;
 
 /**
  * @author RSantos34
@@ -33,14 +33,12 @@ import escola.musica.modelo.TipoCurso;
 public class CursoBean implements INavegable<Curso> {
 
 	private static Curso curso;
-	private List<TipoCurso> tipos;
+	private List<Area> areas;
 	private List<Curso> cursos = new ArrayList<Curso>();
 	private List<Curso> cursosAccordion = new ArrayList<Curso>();
 	private List<String> restricoes = new ArrayList<String>();
 	private Curso cursoAlvo;
-
 	private CursoDao cursoDao = null;
-
 	// private GenericDAO<Curso, Long> dao = null;
 
 	/**
@@ -65,7 +63,7 @@ public class CursoBean implements INavegable<Curso> {
 		// dao = new GenericDAO<Curso, Long>();
 
 		cursosAccordion = cursoDao.selectAllAccordion(restricoes);
-		tipos = Arrays.asList(TipoCurso.values());
+		areas = Arrays.asList(Area.values());
 	}
 	
 	/**
@@ -117,18 +115,18 @@ public class CursoBean implements INavegable<Curso> {
 	}
 
 	/**
-	 * @return the tipos
+	 * @return the areas
 	 */
-	public List<TipoCurso> getTipos() {
-		return tipos;
+	public List<Area> getAreas() {
+		return areas;
 	}
 
 	/**
-	 * @param tipos
-	 *            the tipos to set
+	 * @param areas
+	 *            the areas to set
 	 */
-	public void setTipos(List<TipoCurso> tipos) {
-		this.tipos = tipos;
+	public void setAreas(List<Area> areas) {
+		this.areas = areas;
 	}
 
 	@Override
@@ -158,12 +156,12 @@ public class CursoBean implements INavegable<Curso> {
 	@Override
 	public void remove() {
 
-		System.out.println("\n\rId do curso a ser deletado: " + cursoAlvo.getId());
-		cursoDao.remove(cursoAlvo.getId());
+		System.out.println("\n\rId do curso a ser deletado: " + cursoAlvo.getCurso_id());
+		cursoDao.remove(cursoAlvo.getCurso_id());
 
 		FacesContext.getCurrentInstance().addMessage(
 				"Sucesso!",
-				new FacesMessage("Curso " + cursoAlvo.getId()
+				new FacesMessage("Curso " + cursoAlvo.getCurso_id()
 						+ " deletado com sucesso!"));
 
 		cursos = cursoDao.selectAll();
@@ -173,7 +171,7 @@ public class CursoBean implements INavegable<Curso> {
 	@Override
 	public void holdInstance(Curso curso) {
 		System.out.println("\n\rEntrou no método hold instance: "
-				+ curso.getId());
+				+ curso.getCurso_id());
 		this.cursoAlvo = curso;
 	}
 

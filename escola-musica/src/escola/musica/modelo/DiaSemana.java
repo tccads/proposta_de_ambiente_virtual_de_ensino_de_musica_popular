@@ -1,8 +1,11 @@
 package escola.musica.modelo;
 
+import javax.persistence.Entity;
+
+
 public enum DiaSemana{
 
-	SEGUNDA("Segunda-feira"), TERCA("Terça-feira"), QUARTA("Quarta-feira"), QUINTA("Quinta-feira"), SEXTA("Sexta-feira"), SABADO("Sábado");
+	SEGUNDA("Segunda-feira"), TERCA("TerÃ§a-feira"), QUARTA("Quarta-feira"), QUINTA("Quinta-feira"), SEXTA("Sexta-feira"), SABADO("SÃ¡bado");
 	
 	private String label;
 

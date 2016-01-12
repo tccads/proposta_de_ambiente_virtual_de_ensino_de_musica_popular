@@ -1,6 +1,6 @@
 package escola.musica.modelo;
 
-public enum TipoCurso {
+public enum Area{
 	
 		TECLAS("Teclas"),
 		CORDAS("Cordas"),
@@ -10,7 +10,7 @@ public enum TipoCurso {
 
 		private String label;
 
-		private TipoCurso(String label) {
+		private Area(String label) {
 			this.label = label;
 		}
 

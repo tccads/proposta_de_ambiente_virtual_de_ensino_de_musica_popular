@@ -3,11 +3,26 @@ package escola.musica.modelo;
 import java.util.Calendar;
 import java.util.List;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import javax.persistence.PrimaryKeyJoinColumn;
+
+@Entity
+@PrimaryKeyJoinColumn(name="pessoa_id")
 public class Professor extends Pessoa{
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 4408518922598030401L;
+	@OneToMany(mappedBy="professor")
 	private List<Curso> cursosMinistrados;
-	private List<Aluno> alunos;
+	@OneToMany(mappedBy="professor")
 	private List<Instrumento> instrumentos;
+	@OneToMany(mappedBy="professor")
 	private List<IntervaloTempo> horariosDisponiveis;
 	private boolean ativo;
 	
@@ -17,24 +32,19 @@ public class Professor extends Pessoa{
 	 * @param instrumentos
 	 * @param horariosDisponiveis
 	 */
-	public Professor(List<Curso> cursosMinistrados, List<Aluno> alunos,
+	public Professor(List<Curso> cursosMinistrados,
 			List<Instrumento> instrumentos,
 			List<IntervaloTempo> horariosDisponiveis) {
-		super();
 		this.cursosMinistrados = cursosMinistrados;
-		this.alunos = alunos;
 		this.instrumentos = instrumentos;
 		this.horariosDisponiveis = horariosDisponiveis;
 	}
-	
 	
 	/**
 	 * 
 	 */
 	public Professor() {
-		super();
 	}
-
 
 	/**
 	 * @return the cursosMinistrados
@@ -48,21 +58,11 @@ public class Professor extends Pessoa{
 	public void setCursosMinistrados(List<Curso> cursosMinistrados) {
 		this.cursosMinistrados = cursosMinistrados;
 	}
-	/**
-	 * @return the alunos
-	 */
-	public List<Aluno> getAlunos() {
-		return alunos;
-	}
-	/**
-	 * @param alunos the alunos to set
-	 */
-	public void setAlunos(List<Aluno> alunos) {
-		this.alunos = alunos;
-	}
+	
 	/**
 	 * @return the instrumentos
 	 */
+	
 	public List<Instrumento> getInstrumentos() {
 		return instrumentos;
 	}
@@ -75,6 +75,7 @@ public class Professor extends Pessoa{
 	/**
 	 * @return the horariosDisponiveis
 	 */
+
 	public List<IntervaloTempo> getHorariosDisponiveis() {
 		return horariosDisponiveis;
 	}

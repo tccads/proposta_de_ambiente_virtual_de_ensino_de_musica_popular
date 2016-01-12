@@ -1,16 +1,27 @@
 package escola.musica.modelo;
 
+import javax.persistence.Column;
+import javax.persistence.Embeddable;
+
 /**
  * @author RSantos34
  *
  */
+@Embeddable
 public class Endereco {
 	
+		@Column(name="endereco_logradouro")
 		private String logradouro;
+		@Column(name="endereco_numero")
 		private int numero;
+		@Column(name="endereco_cep")
 		private String cep;
+		@Column(name="endereco_cidade")
 		private String cidade;
+		@Column(name="endereco_cidade_uf")
 		private String uf;
+		
+		
 		/**
 		 * @return the logradouro
 		 */

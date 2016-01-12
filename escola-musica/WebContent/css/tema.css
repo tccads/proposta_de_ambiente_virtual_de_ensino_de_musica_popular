@@ -5,7 +5,6 @@
 .cancelar-icon{background: url("icons/cancelar.png") !important;}
 .excluir-icon{background: url("icons/excluir.png") !important;}
 
-
 .cursos-icon{background: url("icons/cursos.png") !important;}
 .matricula-icon{background: url("icons/matricula.png") !important;}
 .professor-icon{background: url("icons/professor.png") !important;}
@@ -15,4 +14,10 @@
 .ui-growl{
 	top: 10%;
 	left: 40%;
+}
+
+.menu{
+	height: 50px;
+	display: inline-block;
+	font-size: 125%;
 }
