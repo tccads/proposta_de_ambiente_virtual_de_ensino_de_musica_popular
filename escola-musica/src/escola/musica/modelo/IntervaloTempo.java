@@ -3,6 +3,7 @@
  */
 package escola.musica.modelo;
 
+import java.io.Serializable;
 import java.util.Calendar;
 import java.util.Date;
 
@@ -25,8 +26,9 @@ import javax.persistence.TemporalType;
  *
  */
 @Entity
-public class IntervaloTempo {
+public class IntervaloTempo implements Serializable{
 
+	private static final long serialVersionUID = -6511720254931536056L;
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Integer intervalo_id;

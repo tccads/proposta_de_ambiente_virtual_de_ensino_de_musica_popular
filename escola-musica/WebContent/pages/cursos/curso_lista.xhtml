@@ -13,10 +13,11 @@
 	<p:dataTable value="#{cursoBean.cursos}" var="curso" rows="10"
 		paginator="true" paginatorPosition="bottom"
 		paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
-		rowsPerPageTemplate="5,10,15" id="tabela-cursos">
+		rowsPerPageTemplate="5,10,15" id="tabela-cursos"
+		filteredValue="#{cursoBean.cursosFiltrados}">
 
-		<p:column headerText="Código" sortBy="#{curso.id}">
-			<h:outputText value="#{curso.id}" />
+		<p:column headerText="Código" sortBy="#{curso.curso_id}">
+			<h:outputText value="#{curso.curso_id}" />
 		</p:column>
 
 		<p:column headerText="Nome" sortBy="#{curso.nome}"
@@ -38,16 +39,6 @@
 				<f:convertDateTime pattern="dd/MM/yyyy" />
 			</h:outputText>
 		</p:column>
-		
-<!-- 		<p:column exportable="false"> -->
-<!-- 			<p:commandLink icon="editar-icon" action="#{cursoBean.edit(curso)}" -->
-<!-- 				update=":curso_form" /> -->
-<!-- 		</p:column> -->
-<!-- 		<p:column exportable="false"> -->
-<!-- 			<p:commandLink icon="excluir-icon" -->
-<!-- 				action="#{cursoBean.holdInstance(curso)}" -->
-<!-- 				oncomplete="PF('confirmarExclusaoDialog').show();" update="@form" /> -->
-<!-- 		</p:column> -->
 
 		<p:column exportable="false">
 				<p:commandButton icon="editar-icon" action="#{cursoBean.edit(curso)}"
@@ -61,7 +52,7 @@
 	</p:dataTable>
 
 	<p:confirmDialog
-		message="#{msgs_erro['confirma_exclusao']} curso de id #{cursoBean.cursoAlvo.id} ?"
+		message="#{msgs_erro['confirma_exclusao']} curso de id #{cursoBean.cursoAlvo.curso_id} ?"
 		widgetVar="confirmarExclusaoDialog">
 		<p:commandButton value="Sim" action="#{cursoBean.remove()}"
 			oncomplete="PF('confirmarExclusaoDialog').hide();" update="@form" />

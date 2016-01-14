@@ -1,5 +1,6 @@
 package escola.musica.modelo;
 
+import java.io.Serializable;
 import java.util.Date;
 
 import javax.persistence.Entity;
@@ -20,8 +21,9 @@ import org.hibernate.validator.constraints.Length;
 import org.hibernate.validator.constraints.NotEmpty;
 
 @Entity
-public class Curso {
+public class Curso implements Serializable {
 
+		private static final long serialVersionUID = 8242048543360630837L;
 		//TODO:Botar as matérias de cada curso, depois do exemplo do video: 
 		@Id
 		@GeneratedValue(strategy = GenerationType.AUTO)

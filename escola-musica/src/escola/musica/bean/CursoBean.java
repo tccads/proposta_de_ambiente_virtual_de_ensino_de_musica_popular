@@ -3,7 +3,7 @@
  */
 package escola.musica.bean;
 
-import java.io.IOException;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
@@ -11,27 +11,27 @@ import java.util.List;
 
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.SessionScoped;
-import javax.faces.component.behavior.FacesBehavior;
+import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
-import javax.faces.event.FacesListener;
-
-import org.primefaces.push.annotation.Singleton;
 
 import escola.musica.dao.CursoDao;
 import escola.musica.dao.GenericDAO;
 import escola.musica.interfaces.INavegable;
-import escola.musica.modelo.Curso;
 import escola.musica.modelo.Area;
+import escola.musica.modelo.Curso;
 
 /**
  * @author RSantos34
  * 
  */
-@SessionScoped
+@ViewScoped
 @ManagedBean
-public class CursoBean implements INavegable<Curso> {
+public class CursoBean implements INavegable<Curso>, Serializable {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -21180947346757649L;
 	private static Curso curso;
 	private List<Area> areas;
 	private List<Curso> cursos = new ArrayList<Curso>();
@@ -39,7 +39,22 @@ public class CursoBean implements INavegable<Curso> {
 	private List<String> restricoes = new ArrayList<String>();
 	private Curso cursoAlvo;
 	private CursoDao cursoDao = null;
-	// private GenericDAO<Curso, Long> dao = null;
+	private GenericDAO<Curso, Long> dao = null;
+	private List<Curso> cursosFiltrados;
+
+	/**
+	 * @return the cursosFiltrados
+	 */
+	public List<Curso> getCursosFiltrados() {
+		return cursosFiltrados;
+	}
+
+	/**
+	 * @param cursosFiltrados the cursosFiltrados to set
+	 */
+	public void setCursosFiltrados(List<Curso> cursosFiltrados) {
+		this.cursosFiltrados = cursosFiltrados;
+	}
 
 	/**
 	 * 
@@ -49,18 +64,14 @@ public class CursoBean implements INavegable<Curso> {
 	}
 
 	public void iniciarBean() {
-//		if (curso == null) {
-//			curso = new Curso();
-//		}
 
 		cursoDao = new CursoDao();
-		cursos = cursoDao.selectAll();
+		dao = new GenericDAO<Curso, Long>(Curso.class);
+		cursos = dao.selectAll();
 
 		for (Curso c : cursos) {
 			restricoes.add(c.getNome());
 		}
-
-		// dao = new GenericDAO<Curso, Long>();
 
 		cursosAccordion = cursoDao.selectAllAccordion(restricoes);
 		areas = Arrays.asList(Area.values());
@@ -132,18 +143,13 @@ public class CursoBean implements INavegable<Curso> {
 	@Override
 	public void save() {
 
-		cursoDao.save(curso);
+		dao.save(curso);
 
 		cursos.add(curso);
-		curso = null;
 
 		FacesContext.getCurrentInstance().addMessage(null,
-				new FacesMessage("Curso salvo com sucesso!"));
-		// try {
-		// FacesContext.getCurrentInstance().getExternalContext().dispatch("curso_lista");
-		// } catch (IOException e) {
-		// e.printStackTrace();
-		// }
+				new FacesMessage("Curso "+ curso.getCurso_id() +" salvo com sucesso!"));
+		curso = null;
 		//return "curso_lista?faces-redirect=true";
 	}
 
@@ -157,26 +163,22 @@ public class CursoBean implements INavegable<Curso> {
 	public void remove() {
 
 		System.out.println("\n\rId do curso a ser deletado: " + cursoAlvo.getCurso_id());
-		cursoDao.remove(cursoAlvo.getCurso_id());
+		dao.remove(cursoAlvo);
 
 		FacesContext.getCurrentInstance().addMessage(
 				"Sucesso!",
 				new FacesMessage("Curso " + cursoAlvo.getCurso_id()
 						+ " deletado com sucesso!"));
 
-		cursos = cursoDao.selectAll();
+		cursos = dao.selectAll();
+		cursosFiltrados = null;
 		//return "curso_lista?faces-redirect=true";
 	}
 
 	@Override
 	public void holdInstance(Curso curso) {
-		System.out.println("\n\rEntrou no método hold instance: "
-				+ curso.getCurso_id());
+		System.out.println("Entrou no holdInstance, segura o curso: " + curso.getCurso_id());
 		this.cursoAlvo = curso;
-	}
-
-	public Date getDataAtual() {
-		return new Date();
 	}
 
 	/**

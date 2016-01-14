@@ -30,14 +30,14 @@ public abstract class Pessoa implements Serializable{
 	@Id
  	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Integer pessoa_id;
-	@CPF
+	@Length(min=11, max=15, message="O campo cpf deve ter 11 caracteres! Com ou sem pontos e traços")
 	@NotNull
 	private String cpf;
 	@NotEmpty(message="O campo nome deve ser informado!")
 	@Length(min=2, max=255, message="O campo nome deve ter entre 2 e 100 caracteres!")
 	private String nome;
 	@NotEmpty(message="O campo nome deve ser informado!")
-	@Length(min=4, max=255, message="O campo nome deve ter entre 2 e 255 caracteres!")
+	@Length(min=2, max=255, message="O campo sobrenome deve ter entre 2 e 255 caracteres!")
 	private String sobrenome;
 	@OneToMany(mappedBy="pessoa")
 	private List<Telefone> telefones;
@@ -46,6 +46,29 @@ public abstract class Pessoa implements Serializable{
 	@Embedded
 	private Endereco endereco;
 	
+	/**
+	 * @param pessoa_id
+	 * @param cpf
+	 * @param nome
+	 * @param sobrenome
+	 * @param telefones
+	 * @param emails
+	 * @param endereco
+	 */
+	public Pessoa(Integer pessoa_id, String cpf, String nome, String sobrenome,
+			List<Telefone> telefones, List<Email> emails, Endereco endereco) {
+		super();
+		this.pessoa_id = pessoa_id;
+		this.cpf = cpf;
+		this.nome = nome;
+		this.sobrenome = sobrenome;
+		this.telefones = telefones;
+		this.emails = emails;
+		this.endereco = endereco;
+	}
+	
+	public Pessoa() {
+	}
 	
 	/**
 	 * @return the id

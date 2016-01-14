@@ -2,6 +2,7 @@ package escola.musica.dao;
 import java.util.List;
 
 import javax.persistence.EntityManager;
+import javax.persistence.Query;
 
 /**
  *T simboliza a entidade a ser persistida. 
@@ -27,7 +28,7 @@ public class GenericDAO<T, TipoId> {
 		entityManager.close();
 	}
 	
-	public void excluir(T entity){
+	public void remove(T entity){
 		
 		EntityManager entityManager = JPAUtil.getEntityManager();
 		
@@ -41,7 +42,7 @@ public class GenericDAO<T, TipoId> {
 	
 	}
 	
-	public List<T> listarTodos(){
+	public List<T> selectAll(){
 		
 		EntityManager entityManager = JPAUtil.getEntityManager();
 		
@@ -61,7 +62,7 @@ public class GenericDAO<T, TipoId> {
 	 * passado por parâmetro.
 	 * 
 	 */
-	public T obterPorId(TipoId id, String nomeId){
+	public T select(TipoId id, String nomeId){
 		
 		EntityManager entityManager = JPAUtil.getEntityManager();
 		
@@ -72,7 +73,47 @@ public class GenericDAO<T, TipoId> {
 		
 		return entity;
 	}
+
+	/**@TODO: Testar o método selectByFilter()
+	 * Método que recebe uma lista de filtros, e nome do filtro onde a restrição deve ser aplicada.
+	 */
+	public List<T> selectByFilter(List<String> filtros, String nomeRestricao){
+		
+		EntityManager entityManager = JPAUtil.getEntityManager();
+		
+		if (filtros.isEmpty()) {
+			return selectAll();
+		} else {
+
+			StringBuilder restricoes = new StringBuilder("from" + classe.getName() + "where "+ nomeRestricao +" in (");
+			int counter = filtros.size();
+
+			System.out.print("\n\rFiltros: " + filtros);
+
+			for (int i = 0; i < filtros.size(); i++) {
+				counter--;
+				System.out.print("\n\rContador: " + counter);
+
+				restricoes.append("'" + filtros.get(i) + "'");
+
+				if (counter > 0) {
+					restricoes.append(",");
+				}
+			}
+
+			restricoes.append(") order by"+ nomeRestricao);
+
+			System.out.print("\n\r Restrições do método selectByFilter: "
+					+ restricoes);
+			Query query = entityManager.createQuery(restricoes.toString());
+			// Query query =
+			// entityManager.createQuery("from Curso where nome in ('Violino','Viola','Bateria','Clarinete','Flauta','Guitarra','Violão,','Oboé') order by nome");
+			return query.getResultList();
+		}
+		
+	}
 	
+//  @Deprecated	
 //	public T obterPorId(Integer id){
 //		EntityManager em = JPAUtil.getEntityManager();
 //		

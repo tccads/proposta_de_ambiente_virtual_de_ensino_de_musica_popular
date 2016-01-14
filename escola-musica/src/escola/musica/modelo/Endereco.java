@@ -1,5 +1,7 @@
 package escola.musica.modelo;
 
+import java.io.Serializable;
+
 import javax.persistence.Column;
 import javax.persistence.Embeddable;
 
@@ -8,8 +10,10 @@ import javax.persistence.Embeddable;
  *
  */
 @Embeddable
-public class Endereco {
+public class Endereco implements Serializable {
 	
+		
+		private static final long serialVersionUID = -6712232556815451427L;
 		@Column(name="endereco_logradouro")
 		private String logradouro;
 		@Column(name="endereco_numero")

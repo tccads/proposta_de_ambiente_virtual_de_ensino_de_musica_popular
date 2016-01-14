@@ -1,5 +1,6 @@
 package escola.musica.dao;
 
+import java.io.Serializable;
 import java.util.List;
 
 import javax.persistence.EntityManager;
@@ -10,8 +11,9 @@ import org.hibernate.TransactionException;
 
 import escola.musica.modelo.Curso;
 
-public class CursoDao implements IDao<Curso, Long> {
+public class CursoDao implements IDao<Curso, Long>, Serializable {
 
+	private static final long serialVersionUID = 3135789063324415834L;
 	EntityManager entityManager = null;
 
 	public CursoDao() {

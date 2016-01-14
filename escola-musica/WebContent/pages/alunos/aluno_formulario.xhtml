@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+<p:panel header="Cadastro de Alunos"
+	rendered="#{alunoBean.aluno != null}" id="lista-aluno-panel">
+	<p:panelGrid columns="2">
+		<h:outputText value="Cpf" />
+		<p:inputMask value="#{alunoBean.aluno.cpf}" mask="999.999.999-99" />
+		<h:outputText value="Nome: " />
+		<p:inputText value="#{alunoBean.aluno.nome}" />
+		<h:outputText value="Sobrenome: " />
+		<p:inputText value="#{alunoBean.aluno.sobrenome}" />
+		<h:outputText value="Ativo: " />
+		<p:selectBooleanButton id="btn_ativo" value="#{alunoBean.aluno.ativo}"
+			onLabel="Yes" offLabel="No" />
+	</p:panelGrid>
+
+	<p:commandButton id="btn-salvar" value="Salvar" icon="ui-icon-disk"
+		action="#{alunoBean.save()}" update="@form" />
+	<p:commandButton icon="voltar-icon" value="Listar Alunos"
+		action="#{alunoBean.voltar()}" immediate="true" update="@form" />
+
+</p:panel>
+
+
+<p:blockUI block="lista-aluno-panel" trigger="btn-salvar" />
+
+</html>

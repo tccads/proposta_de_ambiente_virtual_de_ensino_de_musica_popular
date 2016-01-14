@@ -3,6 +3,8 @@
  */
 package escola.musica.modelo;
 
+import java.io.Serializable;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -18,7 +20,7 @@ import org.hibernate.validator.constraints.NotEmpty;
  *
  */
 @Entity
-public class Email {
+public class Email implements Serializable {
 	
 	@Id
 	@org.hibernate.validator.constraints.Email(message = "Informe um e-mail válido")

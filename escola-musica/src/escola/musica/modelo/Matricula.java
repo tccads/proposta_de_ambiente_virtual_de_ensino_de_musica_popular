@@ -1,5 +1,6 @@
 package escola.musica.modelo;
 
+import java.io.Serializable;
 import java.util.Date;
 
 import javax.persistence.Column;
@@ -14,8 +15,9 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 @Entity
-public class Matricula {
+public class Matricula implements Serializable {
 	
+	private static final long serialVersionUID = 1388203587099607201L;
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Integer curso_id;
@@ -26,7 +28,7 @@ public class Matricula {
 	@JoinColumn(name="professor_id")
 	private Professor professor;
 	@ManyToOne
-	@JoinColumn(name="pessoa_id")
+	@JoinColumn(name="aluno_id")
 	private Aluno aluno;
 	@OneToOne
 	@JoinColumn(name="intervalo_id")

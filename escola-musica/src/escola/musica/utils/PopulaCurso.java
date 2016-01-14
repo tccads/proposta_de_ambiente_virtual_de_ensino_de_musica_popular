@@ -1,4 +1,4 @@
-package escola.musica.dao;
+package escola.musica.utils;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -7,6 +7,7 @@ import java.util.Date;
 
 import javax.persistence.EntityManager;
 
+import escola.musica.dao.JPAUtil;
 import escola.musica.modelo.Curso;
 import escola.musica.modelo.Area;
 
@@ -21,7 +22,7 @@ public class PopulaCurso {
 		Curso viola = geraCurso("Viola", getDescricao(), "01/01/2014", 4, Area.CORDAS);
 		Curso violoncello = geraCurso("Violoncello", getDescricao(), "01/01/2014", 4, Area.CORDAS);
 		Curso contrabaixo = geraCurso("Contrabaixo", getDescricao(), "01/01/2014", 4, Area.CORDAS);
-		Curso violao = geraCurso("Viol�o", getDescricao(), "01/01/2014", 4, Area.CORDAS);
+		Curso violao = geraCurso("Violão", getDescricao(), "01/01/2014", 4, Area.CORDAS);
 		Curso guitarra = geraCurso("Guitarra", getDescricao(), "01/01/2014", 4, Area.CORDAS);
 		Curso flauta = geraCurso("Flauta", getDescricao(), "01/02/2014", 4, Area.SOPRO);
 		Curso clarinete = geraCurso("Clarinete", getDescricao(), "01/02/2014", 4, Area.SOPRO);
@@ -59,6 +60,7 @@ public class PopulaCurso {
 		em.persist(xilofone);
 		em.persist(caixa);
 		em.persist(bumbo);
+		em.persist(batera);
 		
 		em.getTransaction().commit();
 		em.close();
@@ -74,19 +76,9 @@ public class PopulaCurso {
 		curso.setNome(nome);
 		curso.setDescricao(descricao);
 		curso.setDuracao(duracao);
-		curso.setDataCriacao(parseData(data));
+		curso.setDataCriacao(Tools.parseData(data));
 		curso.setArea(tipo);
 		return curso;
 	}
 	
-	private static Date parseData(String data){
-		try{
-			Date date = new SimpleDateFormat("dd/MM/yyy").parse(data);
-			Calendar calendar = Calendar.getInstance();
-			calendar.setTime(date);
-			return calendar.getTime();
-		}catch(ParseException e){
-			throw new IllegalArgumentException(e);
-		}
-	}
 }

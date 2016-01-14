@@ -22,20 +22,27 @@ public class Aluno extends Pessoa {
 	private boolean ativo;
 	
 	/**
+	 * @param pessoa_id
+	 * @param cpf
+	 * @param nome
+	 * @param sobrenome
+	 * @param telefones
+	 * @param emails
+	 * @param endereco
 	 * @param listaMatriculas
 	 * @param ativo
 	 */
-	public Aluno(List<Matricula> listaMatriculas, boolean ativo) {
-		super();
+	public Aluno(Integer pessoa_id, String cpf, String nome, String sobrenome,
+			List<Telefone> telefones, List<Email> emails, Endereco endereco,
+			List<Matricula> listaMatriculas, boolean ativo) {
+		super(pessoa_id, cpf, nome, sobrenome, telefones, emails, endereco);
 		this.listaMatriculas = listaMatriculas;
 		this.ativo = ativo;
 	}
-	/**
-	 * 
-	 */
-	public Aluno() {
-	}
 	
+	public Aluno(){
+	}
+
 	/**
 	 * @return the listaMatriculas
 	 */
@@ -43,6 +50,7 @@ public class Aluno extends Pessoa {
 	public List<Matricula> getListaMatriculas() {
 		return listaMatriculas;
 	}
+	
 	/**
 	 * @param listaMatriculas the listaMatriculas to set
 	 */

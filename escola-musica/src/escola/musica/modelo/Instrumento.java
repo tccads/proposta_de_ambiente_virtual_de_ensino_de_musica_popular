@@ -3,6 +3,8 @@
  */
 package escola.musica.modelo;
 
+import java.io.Serializable;
+
 import javax.persistence.Entity;
 import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
@@ -17,8 +19,9 @@ import javax.validation.constraints.NotNull;
  *
  */
 @Entity
-public class Instrumento {
+public class Instrumento implements Serializable{
 	
+	private static final long serialVersionUID = -5787567264311696362L;
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Integer id;
