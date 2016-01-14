@@ -1,54 +1,36 @@
 package escola.musica.bean;
 
+import java.io.Serializable;
 import java.util.List;
 
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
 
+import escola.musica.dao.GenericDAO;
 import escola.musica.interfaces.INavegable;
 import escola.musica.modelo.Professor;
 
 @ManagedBean
-public class ProfessorBean implements INavegable<Professor>{
-
-	private Professor professor = new Professor();
+@ViewScoped
+public class ProfessorBean extends GenericBean<Professor, Integer> implements Serializable{
 	
-	/**
-	 * @return the professor
-	 */
-	public Professor getProfessor() {
-		return professor;
-	}
-
-	/**
-	 * @param professor the professor to set
-	 */
-	public void setProfessor(Professor professor) {
-		this.professor = professor;
-	}
-
+	private static final long serialVersionUID = -4932944048957033091L;
+	
 	@Override
-	public void save() {
-				
-		FacesContext.getCurrentInstance().addMessage(null, 
-				new FacesMessage("Professor"+ professor.getNome() +"salvo com sucesso!"));
+	public void iniciarBean() {
+		super.setDao(new GenericDAO<Professor, Integer>(Professor.class));
+		super.setEntities(super.getDao().selectAll());
+	};
+	
+	public ProfessorBean(){
+		iniciarBean();
 	}
-
+	
 	@Override
-	public void edit(Professor professor) {
-		// TODO Implementar o edit
-	}
-
-	@Override
-	public void remove() {
-		// TODO Implementar o remove
-	}
-
-	@Override
-	public void holdInstance(Professor professor) {
-		// TODO Implementar o holdInstance
-		
+	public void novaEntity() {
+		super.setEntity(new Professor());
 	}
 
 }

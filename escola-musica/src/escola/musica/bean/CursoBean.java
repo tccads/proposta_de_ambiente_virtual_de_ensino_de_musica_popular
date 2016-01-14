@@ -63,6 +63,7 @@ public class CursoBean implements INavegable<Curso>, Serializable {
 		iniciarBean();
 	}
 
+	@Override
 	public void iniciarBean() {
 
 		cursoDao = new CursoDao();
@@ -196,8 +197,14 @@ public class CursoBean implements INavegable<Curso>, Serializable {
 		this.cursosAccordion = cursosAccordion;
 	}
 	
+	@Override
 	public void voltar(){
 		curso = null;
+	}
+
+	@Override
+	public void novaEntity() {
+		curso = new Curso();
 	}
 
 }

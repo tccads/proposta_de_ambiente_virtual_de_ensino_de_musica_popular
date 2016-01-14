@@ -50,4 +50,22 @@ public class TelefoneBean implements INavegable<Telefone>{
 		
 	}
 
+	@Override
+	public void iniciarBean() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void voltar() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void novaEntity() {
+		// TODO Auto-generated method stub
+		
+	}
+
 }

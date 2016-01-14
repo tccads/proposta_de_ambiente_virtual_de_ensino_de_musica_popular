@@ -27,19 +27,30 @@ public class Professor extends Pessoa{
 	private boolean ativo;
 	
 	/**
+	 * @param pessoa_id
+	 * @param cpf
+	 * @param nome
+	 * @param sobrenome
+	 * @param telefones
+	 * @param emails
+	 * @param endereco
 	 * @param cursosMinistrados
-	 * @param alunos
 	 * @param instrumentos
 	 * @param horariosDisponiveis
+	 * @param ativo
 	 */
-	public Professor(List<Curso> cursosMinistrados,
+	public Professor(Integer pessoa_id, String cpf, String nome,
+			String sobrenome, List<Telefone> telefones, List<Email> emails,
+			Endereco endereco, List<Curso> cursosMinistrados,
 			List<Instrumento> instrumentos,
-			List<IntervaloTempo> horariosDisponiveis) {
+			List<IntervaloTempo> horariosDisponiveis, boolean ativo) {
+		super(pessoa_id, cpf, nome, sobrenome, telefones, emails, endereco);
 		this.cursosMinistrados = cursosMinistrados;
 		this.instrumentos = instrumentos;
 		this.horariosDisponiveis = horariosDisponiveis;
+		this.ativo = ativo;
 	}
-	
+
 	/**
 	 * 
 	 */

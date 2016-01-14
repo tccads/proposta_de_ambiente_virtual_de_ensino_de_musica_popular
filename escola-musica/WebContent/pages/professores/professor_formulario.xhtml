@@ -1,5 +1,4 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
-    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html>
 
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
@@ -7,24 +6,25 @@
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:p="http://primefaces.org/ui">
 
-	<h:head>
-		<title>Cadastro de Cursos</title>
-	</h:head>
-	<h:body>
-		<h:form>
-		<p:growl/>
-		<p:panel header="Cadastro de cursos">
-		<p:panelGrid columns="2">
-			
-		</p:panelGrid>
-		
-		<p:commandButton value="Salvar" icon="ui-icon-disk" action="#{professorBean.save()}"
-			update="@form"/>
-            
-        <p:commandButton value="Deletar" icon="ui-icon-trash" action="#{professorBean.remove()}"
-			update="@form"/>
-		
-		</p:panel>
-		</h:form>
-	</h:body>
+<p:panel header="Cadastro de Professores"
+	rendered="#{professorBean.entity != null}" id="lista-professor-panel">
+	<p:panelGrid columns="2">
+		<h:outputText value="Cpf" />
+		<p:inputMask value="#{professorBean.entity.cpf}" mask="999.999.999-99" />
+		<h:outputText value="Nome: " />
+		<p:inputText value="#{professorBean.entity.nome}" />
+		<h:outputText value="Sobrenome: " />
+		<p:inputText value="#{professorBean.entity.sobrenome}" />
+	</p:panelGrid>
+
+	<p:commandButton id="btn-salvar" value="Salvar" icon="ui-icon-disk"
+		action="#{professorBean.save()}" update="@form" />
+	<p:commandButton id="btn-voltar" icon="voltar-icon" value="Listar professores"
+		action="#{professorBean.voltar()}" immediate="true" update="@form" />
+
+</p:panel>
+
+
+<p:blockUI block="lista-professor-panel" trigger="btn-salvar" />
+
 </html>

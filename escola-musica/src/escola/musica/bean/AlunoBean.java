@@ -16,7 +16,7 @@ import escola.musica.modelo.Curso;
 
 @ManagedBean
 @ViewScoped
-public class AlunoBean implements INavegable<Aluno>, Serializable{
+public class AlunoBean implements INavegable<Aluno>, Serializable {
 
 	private static final long serialVersionUID = -8651322028367045648L;
 	private Aluno aluno;
@@ -32,6 +32,7 @@ public class AlunoBean implements INavegable<Aluno>, Serializable{
 		iniciarBean();
 	}
 
+	@Override
 	public void iniciarBean() {
 		dao = new GenericDAO<Aluno, Integer>(Aluno.class);
 		alunos = dao.selectAll();
@@ -107,6 +108,7 @@ public class AlunoBean implements INavegable<Aluno>, Serializable{
 		System.out.println("\n\rEntrou no hold instance. Segura o aluno: " + alunoAlvo.getId());
 	}
 	
+	@Override
 	public void voltar() {
 		this.aluno = null;
 	}
@@ -138,5 +140,24 @@ public class AlunoBean implements INavegable<Aluno>, Serializable{
 	public void setAlunoAlvo(Aluno alunoAlvo) {
 		this.alunoAlvo = alunoAlvo;
 	}
+
+	@Override
+	public void novaEntity() {
+		aluno = new Aluno();
+	}
 	
+	/**
+	 * @return the dao
+	 */
+	public GenericDAO<Aluno, Integer> getDao() {
+		return dao;
+	}
+
+	/**
+	 * @param dao the dao to set
+	 */
+	public void setDao(GenericDAO<Aluno, Integer> dao) {
+		this.dao = dao;
+	}
+
 }

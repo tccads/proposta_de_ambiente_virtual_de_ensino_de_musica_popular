@@ -85,7 +85,7 @@ public class GenericDAO<T, TipoId> {
 			return selectAll();
 		} else {
 
-			StringBuilder restricoes = new StringBuilder("from" + classe.getName() + "where "+ nomeRestricao +" in (");
+			StringBuilder restricoes = new StringBuilder(" from " + classe.getName() + " where "+ nomeRestricao +" in (");
 			int counter = filtros.size();
 
 			System.out.print("\n\rFiltros: " + filtros);
@@ -101,7 +101,7 @@ public class GenericDAO<T, TipoId> {
 				}
 			}
 
-			restricoes.append(") order by"+ nomeRestricao);
+			restricoes.append(") order by "+ nomeRestricao);
 
 			System.out.print("\n\r Restrições do método selectByFilter: "
 					+ restricoes);
