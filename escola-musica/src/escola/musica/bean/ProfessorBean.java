@@ -11,6 +11,7 @@ import javax.faces.context.FacesContext;
 import escola.musica.dao.GenericDAO;
 import escola.musica.interfaces.INavegable;
 import escola.musica.modelo.Professor;
+import escola.musica.utils.PopulaProfessor;
 
 @ManagedBean
 @ViewScoped
@@ -22,6 +23,9 @@ public class ProfessorBean extends GenericBean<Professor, Integer> implements Se
 	public void iniciarBean() {
 		super.setDao(new GenericDAO<Professor, Integer>(Professor.class));
 		super.setEntities(super.getDao().selectAll());
+		if(super.getEntities().isEmpty()){
+			PopulaProfessor.main(null);
+		}
 	};
 	
 	public ProfessorBean(){

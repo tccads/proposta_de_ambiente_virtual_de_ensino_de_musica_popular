@@ -44,7 +44,7 @@ public abstract class Pessoa implements Serializable{
 	@OneToMany(mappedBy="pessoa")
 	private List<Email> emails;
 	@Embedded
-	private Endereco endereco;
+	private Endereco endereco = new Endereco();
 	
 	/**
 	 * @param pessoa_id
@@ -55,10 +55,9 @@ public abstract class Pessoa implements Serializable{
 	 * @param emails
 	 * @param endereco
 	 */
-	public Pessoa(Integer pessoa_id, String cpf, String nome, String sobrenome,
+	public Pessoa(String cpf, String nome, String sobrenome,
 			List<Telefone> telefones, List<Email> emails, Endereco endereco) {
 		super();
-		this.pessoa_id = pessoa_id;
 		this.cpf = cpf;
 		this.nome = nome;
 		this.sobrenome = sobrenome;

@@ -5,6 +5,7 @@ package escola.musica.modelo;
 
 import java.io.Serializable;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -27,7 +28,7 @@ public class Email implements Serializable {
 	@NotNull
 	@NotEmpty(message="Preencha um valor para o email!")
 	private String endereco;
-	@ManyToOne
+	@ManyToOne(cascade=CascadeType.REMOVE)
 	@JoinColumn(name="pessoa_id")
 	private Pessoa pessoa;
 	

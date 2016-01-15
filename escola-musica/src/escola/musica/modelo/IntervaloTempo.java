@@ -48,10 +48,9 @@ public class IntervaloTempo implements Serializable{
 	 * @param inicioIntervalo
 	 * @param terminioIntervalo
 	 */
-	public IntervaloTempo(Integer id, DiaSemana dia, Date inicioIntervalo,
+	public IntervaloTempo(DiaSemana dia, Date inicioIntervalo,
 			Date terminioIntervalo) {
 		super();
-		this.intervalo_id = id;
 		this.dia = dia;
 		this.inicioIntervalo = inicioIntervalo;
 		this.terminioIntervalo = terminioIntervalo;

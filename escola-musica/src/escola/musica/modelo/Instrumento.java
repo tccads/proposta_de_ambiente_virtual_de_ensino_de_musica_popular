@@ -6,6 +6,7 @@ package escola.musica.modelo;
 import java.io.Serializable;
 
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -25,7 +26,7 @@ public class Instrumento implements Serializable{
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Integer id;
-	@Enumerated
+	@Enumerated(EnumType.STRING)
 	private Area area;
 	@NotNull
 	private String nomeInstrumento;

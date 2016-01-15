@@ -32,10 +32,10 @@ public class Aluno extends Pessoa {
 	 * @param listaMatriculas
 	 * @param ativo
 	 */
-	public Aluno(Integer pessoa_id, String cpf, String nome, String sobrenome,
+	public Aluno(String cpf, String nome, String sobrenome,
 			List<Telefone> telefones, List<Email> emails, Endereco endereco,
 			List<Matricula> listaMatriculas, boolean ativo) {
-		super(pessoa_id, cpf, nome, sobrenome, telefones, emails, endereco);
+		super(cpf, nome, sobrenome, telefones, emails, endereco);
 		this.listaMatriculas = listaMatriculas;
 		this.ativo = ativo;
 	}

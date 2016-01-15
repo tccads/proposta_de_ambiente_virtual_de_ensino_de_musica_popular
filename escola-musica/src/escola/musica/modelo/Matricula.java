@@ -52,11 +52,10 @@ public class Matricula implements Serializable {
 	 * @param dataRescisao
 	 * @param ativa
 	 */
-	public Matricula(Integer id, Curso curso, Professor professor,
+	public Matricula(Curso curso, Professor professor,
 			IntervaloTempo horario, Date dataAbertura, Date dataRescisao,
 			boolean ativa) {
 		super();
-		this.curso_id = id;
 		this.curso = curso;
 		this.professor = professor;
 		this.horario = horario;

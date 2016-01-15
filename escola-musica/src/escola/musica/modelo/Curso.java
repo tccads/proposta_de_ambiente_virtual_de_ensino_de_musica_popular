@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.Date;
 
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -37,7 +38,7 @@ public class Curso implements Serializable {
 		@Temporal(TemporalType.DATE)
 		private Date dataCriacao;
 		private double duracao;
-		@Enumerated
+		@Enumerated(EnumType.STRING)
 		@NotNull(message = "Você deve selecionar o tipo do curso!")
 		private Area area;
 		@ManyToOne

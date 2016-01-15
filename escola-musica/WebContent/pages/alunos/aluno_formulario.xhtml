@@ -8,18 +8,57 @@
 
 <p:panel header="Cadastro de Alunos"
 	rendered="#{alunoBean.aluno != null}" id="lista-aluno-panel">
-	<p:panelGrid columns="2">
-		<h:outputText value="Cpf" />
-		<p:inputMask value="#{alunoBean.aluno.cpf}" mask="999.999.999-99" />
-		<h:outputText value="Nome: " />
-		<p:inputText value="#{alunoBean.aluno.nome}" />
-		<h:outputText value="Sobrenome: " />
-		<p:inputText value="#{alunoBean.aluno.sobrenome}" />
-		<h:outputText value="Ativo: " />
-		<p:selectBooleanButton id="btn_ativo" value="#{alunoBean.aluno.ativo}"
-			onLabel="Yes" offLabel="No" />
-	</p:panelGrid>
+	<p:panel header="Dados do Aluno">
 
+		<p:panelGrid id="dados_aluno" columns="2">
+			<h:outputText value="Cpf" />
+			<p:inputMask value="#{alunoBean.aluno.cpf}" mask="999.999.999-99" />
+			<h:outputText value="Nome: " />
+			<p:inputText value="#{alunoBean.aluno.nome}" />
+			<h:outputText value="Sobrenome: " />
+			<p:inputText value="#{alunoBean.aluno.sobrenome}" />
+			<h:outputText value="Ativo: " />
+			<p:selectBooleanButton id="btn_ativo"
+				value="#{alunoBean.aluno.ativo}" onLabel="Yes" offLabel="No" />
+		</p:panelGrid>
+
+	</p:panel>
+
+	<p:panel id="panel_endereco"  header="Dados do endereço" style="display:in-line;">
+		<p:panelGrid id="grid_endereco_aluno" columns="2">
+		<h:outputText value="Logradouro: " />
+		<p:inputMask value="#{alunoBean.aluno.endereco.logradouro}"/>
+		<h:outputText value="Numero: " />
+		<p:inputText value="#{alunoBean.aluno.endereco.numero}" size="5"/>
+		<h:outputText value="CEP"/>
+		<p:inputMask mask="99999-999" value="#{alunoBean.aluno.endereco.cep}" />
+		<h:outputText value="UF: " />
+		
+		<p:selectOneMenu value="#{alunoBean.aluno.endereco.cidade.uf}">
+			<f:selectItem itemLabel="::Selecione::"  itemValue="#{null}"/>
+			<f:selectItems value="#{alunoBean.estados}" var="estado"
+			itemLabel="#{estado.label}" itemValue="#{estado}"/>
+		</p:selectOneMenu>
+		
+		<h:outputText value="Cidade: " />
+		<p:selectOneMenu value="#{alunoBean.aluno.endereco.cidade}">
+			<f:selectItem itemLabel="::Selecione::" itemValue="#{null}" />
+			<f:selectItems value="#{alunoBean.cidadesDoEstado}" var="cidade" 
+			itemLabel="#{cidade.nome}" itemValue="#{cidade.id}"/>		
+		</p:selectOneMenu>
+
+		</p:panelGrid>
+	</p:panel>
+	
+	<p:panel id="panel_emails" header="Emails">
+		<h:outputText value="Emails" />
+	</p:panel>
+	
+	<p:panel id="panel_telefones" header="Telefones">
+		<h:outputText value="Telefones" />
+	</p:panel>
+	
+	<br />
 	<p:commandButton id="btn-salvar" value="Salvar" icon="ui-icon-disk"
 		action="#{alunoBean.save()}" update="@form" />
 	<p:commandButton icon="voltar-icon" value="Listar Alunos"

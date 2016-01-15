@@ -1,6 +1,7 @@
 package escola.musica.bean;
 
 import java.io.Serializable;
+import java.util.Arrays;
 import java.util.List;
 
 import javax.faces.application.FacesMessage;
@@ -12,7 +13,10 @@ import javax.faces.context.FacesContext;
 import escola.musica.dao.GenericDAO;
 import escola.musica.interfaces.INavegable;
 import escola.musica.modelo.Aluno;
+import escola.musica.modelo.Cidade;
 import escola.musica.modelo.Curso;
+import escola.musica.modelo.Uf;
+import escola.musica.utils.PopulaAluno;
 
 @ManagedBean
 @ViewScoped
@@ -24,7 +28,10 @@ public class AlunoBean implements INavegable<Aluno>, Serializable {
 	private GenericDAO<Aluno, Integer> dao = null;
 	private Aluno alunoAlvo = null;
 	private List<Aluno> alunosFiltrados;
-
+	private List<Uf> estados;
+	private List<Cidade> cidadesDoEstado;
+	private List<String> filtros;
+	
 	/**
 	 * 
 	 */
@@ -36,8 +43,28 @@ public class AlunoBean implements INavegable<Aluno>, Serializable {
 	public void iniciarBean() {
 		dao = new GenericDAO<Aluno, Integer>(Aluno.class);
 		alunos = dao.selectAll();
+		
+		if(alunos.isEmpty()){
+			PopulaAluno.main(null);
+		}
+		
+		estados = Arrays.asList(Uf.values());
 	}
 	
+	/**
+	 * @return the estados
+	 */
+	public List<Uf> getEstados() {
+		return estados;
+	}
+
+	/**
+	 * @param estados the estados to set
+	 */
+	public void setEstados(List<Uf> estados) {
+		this.estados = estados;
+	}
+
 	/**
 	 * @return the aluno
 	 */
@@ -160,4 +187,29 @@ public class AlunoBean implements INavegable<Aluno>, Serializable {
 		this.dao = dao;
 	}
 
+	/**
+	 * @return the cidadesDoEstado
+	 */
+	public List<Cidade> getCidadesDoEstado() {
+		return cidadesDoEstado;
+	}
+
+	/**
+	 * @param cidadesDoEstado the cidadesDoEstado to set
+	 */
+	public void setCidadesDoEstado(List<Cidade> cidadesDoEstado) {
+		this.cidadesDoEstado = cidadesDoEstado;
+	}
+
+	@SuppressWarnings("unchecked")
+	public List<Cidade> getCidadesdoEstado() {
+		
+		for (Uf est : estados) {
+			filtros.add(est.getLabel());
+		}
+		cidadesDoEstado = new GenericDAO(Cidade.class).selectByFilter(filtros, "uf");
+		
+		return cidadesDoEstado;
+	}
+	
 }

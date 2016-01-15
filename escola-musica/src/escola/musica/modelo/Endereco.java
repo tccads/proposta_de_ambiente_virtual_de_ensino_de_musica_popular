@@ -2,8 +2,12 @@ package escola.musica.modelo;
 
 import java.io.Serializable;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Embeddable;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 
 /**
  * @author RSantos34
@@ -12,7 +16,6 @@ import javax.persistence.Embeddable;
 @Embeddable
 public class Endereco implements Serializable {
 	
-		
 		private static final long serialVersionUID = -6712232556815451427L;
 		@Column(name="endereco_logradouro")
 		private String logradouro;
@@ -20,11 +23,9 @@ public class Endereco implements Serializable {
 		private int numero;
 		@Column(name="endereco_cep")
 		private String cep;
-		@Column(name="endereco_cidade")
-		private String cidade;
-		@Column(name="endereco_cidade_uf")
-		private String uf;
-		
+		@ManyToOne(cascade=CascadeType.DETACH)
+		@JoinColumn(name="cidade_id")
+		private Cidade cidade = new Cidade();
 		
 		/**
 		 * @return the logradouro
@@ -62,39 +63,26 @@ public class Endereco implements Serializable {
 		public void setCep(String cep) {
 			this.cep = cep;
 		}
+		
 		/**
 		 * @return the cidade
 		 */
-		public String getCidade() {
+		public Cidade getCidade() {
 			return cidade;
 		}
 		/**
 		 * @param cidade the cidade to set
 		 */
-		public void setCidade(String cidade) {
+		public void setCidade(Cidade cidade) {
 			this.cidade = cidade;
 		}
-		/**
-		 * @return the uf
-		 */
-		public String getUf() {
-			return uf;
-		}
-		/**
-		 * @param uf the uf to set
-		 */
-		public void setUf(String uf) {
-			this.uf = uf;
-		}
-		
 		public Endereco(String logradouro, int numero, String cep,
-				String cidade, String uf) {
+				Cidade cidade) {
 			super();
 			this.logradouro = logradouro;
 			this.numero = numero;
 			this.cep = cep;
 			this.cidade = cidade;
-			this.uf = uf;
 		}
 		
 		public Endereco() {

@@ -19,6 +19,7 @@ import escola.musica.dao.GenericDAO;
 import escola.musica.interfaces.INavegable;
 import escola.musica.modelo.Area;
 import escola.musica.modelo.Curso;
+import escola.musica.utils.PopulaCurso;
 
 /**
  * @author RSantos34
@@ -76,6 +77,10 @@ public class CursoBean implements INavegable<Curso>, Serializable {
 
 		cursosAccordion = cursoDao.selectAllAccordion(restricoes);
 		areas = Arrays.asList(Area.values());
+		
+		if(cursos.isEmpty()){
+			PopulaCurso.main(null);
+		}
 	}
 	
 	/**

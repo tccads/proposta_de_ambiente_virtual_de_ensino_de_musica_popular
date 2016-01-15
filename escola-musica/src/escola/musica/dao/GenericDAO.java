@@ -1,4 +1,5 @@
 package escola.musica.dao;
+import java.io.Serializable;
 import java.util.List;
 
 import javax.persistence.EntityManager;
@@ -8,8 +9,9 @@ import javax.persistence.Query;
  *T simboliza a entidade a ser persistida. 
  *K simboliza o tipo do id da entidade persistida.
  */
-public class GenericDAO<T, TipoId> {
+public class GenericDAO<T, TipoId>  implements Serializable{
 
+	private static final long serialVersionUID = -6886514734941582883L;
 	private final Class<T> classe;
 	
 	public GenericDAO(Class<T> classe){
@@ -103,7 +105,7 @@ public class GenericDAO<T, TipoId> {
 
 			restricoes.append(") order by "+ nomeRestricao);
 
-			System.out.print("\n\r Restrições do método selectByFilter: "
+			System.out.print("\n\r## Restrições do método selectByFilter: "
 					+ restricoes);
 			Query query = entityManager.createQuery(restricoes.toString());
 			// Query query =

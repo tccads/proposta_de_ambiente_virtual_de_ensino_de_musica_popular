@@ -3,6 +3,7 @@
  */
 package escola.musica.modelo;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -19,7 +20,7 @@ public class Telefone {
 
 		@Id
 		private String numero;
-		@ManyToOne
+		@ManyToOne(cascade=CascadeType.REMOVE)
 		@JoinColumn(name="pessoa_id")
 		private Pessoa pessoa;
 		

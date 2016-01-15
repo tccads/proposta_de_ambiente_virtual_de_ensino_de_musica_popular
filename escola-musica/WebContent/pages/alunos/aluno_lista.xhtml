@@ -30,7 +30,7 @@
 			<h:outputText value="#{alu.sobrenome}" />
 		</p:column>
 		<p:column headerText="Ativo">
-			<h:outputLabel value="#{alu.ativo}" readonly="true" />
+			<h:outputLabel value="#{alu.ativo ? 'Sim' : 'Não'}" readonly="true" />
 		</p:column>
 		<p:column exportable="false">
 			<p:commandButton id="btn_editar" icon="editar-icon" action="#{alunoBean.edit(alu)}" update=":aluno_form" />
@@ -50,8 +50,6 @@
 			oncomplete="PF('confirmarExclusaoDialog').hide();" update="@form" />
 	</p:confirmDialog>
 
-</p:panel>
-
 	<p:commandButton value="Novo Aluno" icon="adicionar-icon"
 		action="#{alunoBean.novoAluno}" update="@form" />
 
@@ -65,5 +63,7 @@
 		<p:dataExporter type="pdf" target="tabela-alunos" fileName="alunos"
 			encoding="iso-8859-1" />
 	</h:commandLink>
+
+</p:panel>
 
 </html>

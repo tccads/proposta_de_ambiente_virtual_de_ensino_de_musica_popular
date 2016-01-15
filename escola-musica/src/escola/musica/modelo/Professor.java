@@ -39,12 +39,12 @@ public class Professor extends Pessoa{
 	 * @param horariosDisponiveis
 	 * @param ativo
 	 */
-	public Professor(Integer pessoa_id, String cpf, String nome,
+	public Professor(String cpf, String nome,
 			String sobrenome, List<Telefone> telefones, List<Email> emails,
 			Endereco endereco, List<Curso> cursosMinistrados,
 			List<Instrumento> instrumentos,
 			List<IntervaloTempo> horariosDisponiveis, boolean ativo) {
-		super(pessoa_id, cpf, nome, sobrenome, telefones, emails, endereco);
+		super(cpf, nome, sobrenome, telefones, emails, endereco);
 		this.cursosMinistrados = cursosMinistrados;
 		this.instrumentos = instrumentos;
 		this.horariosDisponiveis = horariosDisponiveis;
@@ -95,6 +95,20 @@ public class Professor extends Pessoa{
 	 */
 	public void setHorariosDisponiveis(List<IntervaloTempo> horariosDisponiveis) {
 		this.horariosDisponiveis = horariosDisponiveis;
+	}
+
+	/**
+	 * @return the ativo
+	 */
+	public boolean isAtivo() {
+		return ativo;
+	}
+
+	/**
+	 * @param ativo the ativo to set
+	 */
+	public void setAtivo(boolean ativo) {
+		this.ativo = ativo;
 	}
 	
 }
