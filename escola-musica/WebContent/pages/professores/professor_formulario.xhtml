@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+<p:panel header="Cadastro de Professores"
+	rendered="#{professorBean.entity != null}" id="lista-professor-panel">
+	<p:panelGrid columns="2">
+		<h:outputText value="Cpf" />
+		<p:inputMask id="inpt_cpf" value="#{professorBean.entity.cpf}" mask="999.999.999-99" />
+		<h:outputText value="Nome: " />
+		<p:inputText id="inpt_nome" value="#{professorBean.entity.nome}" />
+		<h:outputText value="Sobrenome: " />
+		<p:inputText id="inpt_sobrenome" value="#{professorBean.entity.sobrenome}" />
+		<h:outputText value="Ativo: " />
+		<p:selectBooleanButton id="btn_ativo" value="#{professorBean.entity.ativo}"
+			onLabel="Yes" offLabel="No" />
+	</p:panelGrid>
+
+	<p:commandButton id="btn-salvar" value="Salvar" icon="ui-icon-disk"
+		action="#{professorBean.save()}" update="@form" />
+	<p:commandButton id="btn-voltar" icon="voltar-icon" value="Listar professores"
+		action="#{professorBean.voltar()}" immediate="true" update="@form" />
+
+</p:panel>
+
+
+<p:blockUI block="lista-professor-panel" trigger="btn-salvar" />
+
+</html>

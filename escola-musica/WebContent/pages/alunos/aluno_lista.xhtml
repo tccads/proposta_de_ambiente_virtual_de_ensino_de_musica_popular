@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+<p:panel header="Alunos cadastrados"
+	rendered="#{alunoBean.aluno == null}">
+
+	<p:dataTable value="#{alunoBean.alunos}" var="alu" rows="10"
+		paginator="true" paginatorPosition="bottom"
+		paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+		rowsPerPageTemplate="5,10,15" id="tabela-alunos"
+		filteredValue="#{alunoBean.alunosFiltrados}">
+		
+		<p:column headerText="Código" sortBy="#{aluno.id}">
+			<h:outputText value="#{alu.id}" />
+		</p:column>
+		<p:column headerText="Cpf" sortBy="#{aluno.cpf}"
+		filterBy="#{aluno.cpf}" filterMatchMode="contains">
+			<h:outputText value="#{alu.cpf}" />
+		</p:column>
+		<p:column headerText="Nome" sortBy="#{aluno.nome}"
+		filterBy="#{aluno.nome}" filterMatchMode="contains">
+			<h:outputText value="#{alu.nome}" />
+		</p:column>
+		<p:column headerText="Sobrenome">
+			<h:outputText value="#{alu.sobrenome}" />
+		</p:column>
+		<p:column headerText="Ativo">
+			<h:outputLabel value="#{alu.ativo ? 'Sim' : 'Não'}" readonly="true" />
+		</p:column>
+		<p:column exportable="false">
+			<p:commandButton id="btn_editar" icon="editar-icon" action="#{alunoBean.edit(alu)}" update=":aluno_form" />
+			<p:commandButton id="btn_excluir" icon="excluir-icon"
+				actionListener="#{alunoBean.holdInstance(alu)}" 
+				oncomplete="PF('confirmarExclusaoDialog').show();"
+				style="margin-left:20px;" update="@form" />
+		</p:column>
+	</p:dataTable>
+
+	<p:confirmDialog
+		message="#{msgs_erro['confirma_exclusao']} aluno de id #{alunoBean.alunoAlvo.id} ?"
+		widgetVar="confirmarExclusaoDialog">
+		<p:commandButton value="Sim" action="#{alunoBean.remove()}"
+			oncomplete="PF('confirmarExclusaoDialog').hide();" update="@form" />
+		<p:commandButton value="Não"
+			oncomplete="PF('confirmarExclusaoDialog').hide();" update="@form" />
+	</p:confirmDialog>
+
+	<p:commandButton value="Novo Aluno" icon="adicionar-icon"
+		action="#{alunoBean.novoAluno}" update="@form" />
+
+	<h:commandLink>
+		<p:graphicImage value="/resources/imagens/exportar_xls.png" />
+		<p:dataExporter type="xls" target="tabela-alunos" fileName="alunos" />
+	</h:commandLink>
+
+	<h:commandLink style="margin-left:10px;">
+		<p:graphicImage value="/resources/imagens/exportar_pdf.png" />
+		<p:dataExporter type="pdf" target="tabela-alunos" fileName="alunos"
+			encoding="iso-8859-1" />
+	</h:commandLink>
+
+</p:panel>
+
+</html>

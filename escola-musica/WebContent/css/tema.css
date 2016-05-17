@@ -1,0 +1,23 @@
+.salvar-icon{background: url("icons/salvar.png") !important;}
+.voltar-icon{background: url("icons/voltar.png") !important;}
+.adicionar-icon{background: url("icons/adicionar.png") !important;}
+.editar-icon{background: url("icons/editar.png") !important;}
+.cancelar-icon{background: url("icons/cancelar.png") !important;}
+.excluir-icon{background: url("icons/excluir.png") !important;}
+
+.cursos-icon{background: url("icons/cursos.png") !important;}
+.matricula-icon{background: url("icons/matricula.png") !important;}
+.professor-icon{background: url("icons/professor.png") !important;}
+.instrumento-icon{background: url("icons/instrumento.png") !important;}
+.aluno-icon{background: url("icons/aluno.png") !important;}
+
+.ui-growl{
+	top: 10%;
+	left: 40%;
+}
+
+.menu{
+	height: 50px;
+	display: inline-block;
+	font-size: 125%;
+}

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+<h:head>
+	<title>Escola Música - <ui:insert name="titulo"/> </title>
+	<meta charset="utf-8" />
+	<ui:insert name="header"/>
+	
+	<link rel="stylesheet" type="text/css" href="#{request.contextPath}/resources/vendor/css/bootstrap.css" />
+	<link rel="stylesheet" type="text/css" href="#{request.contextPath}/resources/vendor/css/bootstrap-responsive.css" />
+	<link rel="stylesheet" type="text/css" href="#{request.contextPath}/resources/vendor/css/font-awesome.css" />
+	
+	<link rel="stylesheet" href="#{request.contextPath}/css/tema.css"/>
+</h:head>
+<h:body>
+	<h:form>
+		<p:menubar style="height:80px">
+			<p:menuitem styleClass="menu" value="Curso" url="/curso/manutencao/" icon="cursos-icon"/>
+			<p:menuitem styleClass="menu" value="Matrícula" url="" icon="matricula-icon"/>
+			<p:menuitem styleClass="menu" value="Professor" url="/professor/manutencao/" icon="professor-icon"/>
+			<p:menuitem styleClass="menu" value="Aluno" url="/aluno/manutencao/" icon="aluno-icon"/>
+			<p:menuitem styleClass="menu" value="Instrumento" url="" icon="instrumento-icon"/>
+		</p:menubar>
+	</h:form>
+	<ui:insert name="principal" />
+	<h3>
+		Seja bem vindo!
+	</h3>
+</h:body>
+</html>

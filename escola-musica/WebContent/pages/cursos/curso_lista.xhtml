@@ -1,0 +1,79 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+<p:panel header="Cursos cadastrados"
+	rendered="#{cursoBean.curso == null}">
+
+	<p:dataTable value="#{cursoBean.cursos}" var="curso" rows="10"
+		paginator="true" paginatorPosition="bottom"
+		paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+		rowsPerPageTemplate="5,10,15" id="tabela-cursos"
+		filteredValue="#{cursoBean.cursosFiltrados}">
+
+		<p:column headerText="Código" sortBy="#{curso.curso_id}">
+			<h:outputText value="#{curso.curso_id}" />
+		</p:column>
+
+		<p:column headerText="Nome" sortBy="#{curso.nome}"
+			filterBy="#{curso.nome}" filterMatchMode="contains">
+			<h:outputText value="#{curso.nome}" />
+		</p:column>
+
+		<p:column headerText="Duracao" sortBy="#{curso.duracao}">
+			<h:outputText value="#{curso.duracao}" />
+		</p:column>
+
+		<p:column headerText="Área" sortBy="#{curso.area.label}"
+			filterBy="#{curso.area.label}">
+			<h:outputText value="#{curso.area.label}" />
+		</p:column>
+
+		<p:column headerText="Data Criação" sortBy="#{curso.dataCriacao}">
+			<h:outputText value="#{curso.dataCriacao}">
+				<f:convertDateTime pattern="dd/MM/yyyy" />
+			</h:outputText>
+		</p:column>
+
+		<p:column exportable="false">
+				<p:commandButton icon="editar-icon" action="#{cursoBean.edit(curso)}"
+					style="color:blue;" update=":curso_form"/>
+					
+				<p:commandButton icon="excluir-icon" 
+					actionListener="#{cursoBean.holdInstance(curso)}"
+					oncomplete="PF('confirmarExclusaoDialog').show();"
+					style="color:red; margin-left:20px;" update="@form"/>
+		</p:column>
+	</p:dataTable>
+
+	<p:confirmDialog
+		message="#{msgs_erro['confirma_exclusao']} curso de id #{cursoBean.cursoAlvo.curso_id} ?"
+		widgetVar="confirmarExclusaoDialog">
+		<p:commandButton value="Sim" action="#{cursoBean.remove()}"
+			oncomplete="PF('confirmarExclusaoDialog').hide();" update="@form" />
+		<p:commandButton value="Não"
+			oncomplete="PF('confirmarExclusaoDialog').hide();" update="@form" />
+	</p:confirmDialog>
+
+</p:panel>
+
+<p:commandButton value="Novo Curso" icon="adicionar-icon"
+	action="#{cursoBean.novoCurso()}" update="@form" />
+
+<h:commandLink>
+	<p:graphicImage value="/resources/imagens/exportar_xls.png"/>
+	<p:dataExporter type="xls" target="tabela-cursos" fileName="cursos" />
+</h:commandLink>
+
+<h:commandLink style="margin-left:10px;">
+	<p:graphicImage value="/resources/imagens/exportar_pdf.png" />
+	<p:dataExporter type="pdf" target="tabela-cursos" fileName="cursos"
+		encoding="iso-8859-1" />
+</h:commandLink>
+
+</html>

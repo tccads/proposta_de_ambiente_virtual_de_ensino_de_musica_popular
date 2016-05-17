@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+<p:panel header="Professores cadastrados"
+	rendered="#{professorBean.entity == null}">
+
+	<p:dataTable value="#{professorBean.entities}" var="prof" rows="10"
+		paginator="true" paginatorPosition="bottom"
+		paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+		rowsPerPageTemplate="5,10,15" id="tabela-professores"
+		filteredvalue="#{professorBean.professoresFiltrados}">
+		
+		<p:column headerText="Código" sortBy="#{prof.id}">
+			<h:outputText value="#{prof.id}" />
+		</p:column>
+		<p:column headerText="Cpf" sortBy="#{prof.cpf}"
+		filterBy="#{prof.cpf}" filterMatchMode="contains">
+			<h:outputText value="#{prof.cpf}" />
+		</p:column>
+		<p:column headerText="Nome" sortBy="#{prof.nome}"
+		filterBy="#{prof.nome}" filterMatchMode="contains">
+			<h:outputText value="#{prof.nome}" />
+		</p:column>
+		<p:column headerText="Sobrenome">
+			<h:outputText value="#{prof.sobrenome}" />
+		</p:column>
+		<p:column headerText="Ativo">
+			<h:outputText value="#{prof.ativo ? 'Sim' : 'Não'}" />
+		</p:column>
+		<p:column exportable="false">
+			<p:commandButton id="btn_editar" icon="editar-icon" action="#{professorBean.edit(prof)}" update=":professor_form" />
+			<p:commandButton id="btn_excluir" icon="excluir-icon"
+				actionListener="#{professorBean.holdInstance(prof)}" 
+				oncomplete="PF('confirmarExclusaoDialog').show();"
+				style="margin-left:20px;" update="@form" />
+		</p:column>
+	</p:dataTable>
+
+	<p:confirmDialog
+		message="#{msgs_erro['confirma_exclusao']} professor de id #{professorBean.entityAlvo.id} ?"
+		widgetVar="confirmarExclusaoDialog">
+		<p:commandButton value="Sim" action="#{professorBean.remove()}"
+			oncomplete="PF('confirmarExclusaoDialog').hide();" update="@form" />
+		<p:commandButton value="Não"
+			oncomplete="PF('confirmarExclusaoDialog').hide();" update="@form" />
+	</p:confirmDialog>
+
+</p:panel>
+
+	<p:commandButton value="Novo professor" icon="adicionar-icon"
+		action="#{professorBean.novaEntity}" update="@form" />
+
+	<h:commandLink>
+		<p:graphicImage value="/resources/imagens/exportar_xls.png" />
+		<p:dataExporter type="xls" target="tabela-professores" fileName="professores" />
+	</h:commandLink>
+
+	<h:commandLink style="margin-left:10px;">
+		<p:graphicImage value="/resources/imagens/exportar_pdf.png" />
+		<p:dataExporter type="pdf" target="tabela-professores" fileName="professores"
+			encoding="iso-8859-1" />
+	</h:commandLink>
+
+</html>
